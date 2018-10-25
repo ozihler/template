@@ -1,33 +1,76 @@
 <div>
   <form
-    #questionForm="ngForm"
-    id="question-form"
-    name="question-form"
-    (ngSubmit)="submitQuestion(questionForm.form);">
+    [formGroup]="questionForm"
+    (ngSubmit)="submitQuestion()"
+  >
+    <div>
+      <input
+        class="mat-form-field"
+        type="text"
+        id="username"
+        name="username"
+        formControlName="username"
+        placeholder="Ihr Username"
+      />
+    </div>
 
-    <div><input
-      type="text"
-      id="question-title"
-      name="question-title"
-      ngModel
-      #questionTitleField="ngModel"/></div>
+    <div>
+      <input
+        class="mat-form-field"
+        type="text"
+        id="email"
+        name="email"
+        formControlName="email"
+        placeholder="Ihre E-Mail-Addresse"
+      />
+    </div>
+    <div *ngIf="email.touched && email.errors">
+      <div class="mat-error" *ngIf="email.errors.required">
+        Sie müssen eine Email-Adresse angeben.
+      </div>
+    </div>
+    <div *ngIf="email.errors">
+      <div class="mat-error" *ngIf="email.errors.pattern">
+        Die Email-Adresse ist ungültig.
+      </div>
+    </div>
+
+    <div>
+      <input
+        class="mat-form-field"
+        type="text"
+        id="question-title"
+        name="question-title"
+        formControlName="title"
+        placeholder="Titel ihrer Frage"
+      />
+    </div>
 
     <div>
       <textarea
+        class="mat-form-field"
         id="question-text"
         name="question-text"
-        ngModel
-        #questionTextField="ngModel">
+        formControlName="question"
+        placeholder="Ihre Frage"
+      >
       </textarea>
     </div>
 
     <div>
       <button
+        class="mat-primary mat-button"
         id="submit-question-button"
+        type="submit"
         [disabled]="!questionForm.valid">
         senden
       </button>
     </div>
-
   </form>
+
+  <div *ngIf="questions">
+    <div *ngFor="let question of questions">
+     <span>{{question.username}} hat eine Frage bezüglich: "{{question.title}}"</span>
+    </div>
+  </div>
 </div>

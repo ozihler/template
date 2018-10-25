@@ -2,9 +2,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from '@angular/router';
-import { QuestionFormComponent } from './question-form/question-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {QuestionFormComponent} from "./question-form/question-form.component";
 
 const appRoutes: Routes = [
   {
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
