@@ -1,0 +1,33 @@
+<div>
+  <form
+    #questionForm="ngForm"
+    id="question-form"
+    name="question-form"
+    (ngSubmit)="submitQuestion(questionForm.form);">
+
+    <div><input
+      type="text"
+      id="question-title"
+      name="question-title"
+      ngModel
+      #questionTitleField="ngModel"/></div>
+
+    <div>
+      <textarea
+        id="question-text"
+        name="question-text"
+        ngModel
+        #questionTextField="ngModel">
+      </textarea>
+    </div>
+
+    <div>
+      <button
+        id="submit-question-button"
+        [disabled]="!questionForm.valid">
+        senden
+      </button>
+    </div>
+
+  </form>
+</div>
