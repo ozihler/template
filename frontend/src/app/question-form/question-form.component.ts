@@ -1,19 +1,19 @@
 import {Component, OnInit} from "@angular/core";
-import {QuestionForm} from "./question-form";
-import {Question} from "./domain/question";
+import {QuestionForm} from "./form-factories/question-form";
+import {QuestionsDto} from "./dtos/questions-dto";
 
 @Component({
-  selector: 'app-question-form',
+  selector: 'question-form',
   templateUrl: './question-form.component.html',
   styleUrls: ['./question-form.component.css']
 })
 export class QuestionFormComponent implements OnInit {
 
-  questions: Question[] = [];
+  questions: QuestionsDto[] = [];
   questionForm
 
   constructor() {
-    this.questionForm = QuestionForm.createQuestionForm();
+    this.questionForm = QuestionForm.create();
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class QuestionFormComponent implements OnInit {
   public submitQuestion() {
     let formData = this.questionForm.value;
     console.log(formData);
-    this.questions.push(Question.createFrom(formData));
+    this.questions.push(QuestionsDto.createFrom(formData));
 
     this.questionForm.reset();
   }
