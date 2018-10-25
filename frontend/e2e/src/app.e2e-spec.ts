@@ -1,14 +1,18 @@
-import { AppPage } from './app.po';
+import { QuestionFormPage } from './users/pages/questionform.po';
+import {QuestionFormUser} from "./users/QuestionFormUser";
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+
+
+describe('Question page', () => {
+   let questionFormUser: QuestionFormUser;
 
   beforeEach(() => {
-    page = new AppPage();
+    questionFormUser = new QuestionFormUser();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to frontend!');
+  it('should display a form to enter a question', () => {
+    questionFormUser.visitsQuestionFormPage();
+    questionFormUser.seesQuestionForm();
+
   });
 });
