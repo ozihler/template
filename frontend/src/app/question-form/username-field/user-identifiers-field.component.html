@@ -1,0 +1,32 @@
+<div [formGroup]="userIdentifiers">
+  <div>
+    <input
+      class="mat-form-field"
+      type="text"
+      id="name-field"
+      name="name-field"
+      formControlName="nameField"
+      placeholder="Ihr Name"/>
+  </div>
+  <div>
+    <input
+      class="mat-form-field"
+      type="text"
+      id="email-field"
+      name="email-field"
+      formControlName="emailField"
+      placeholder="Ihre E-Mail-Addresse"/>
+
+    <div *ngIf="emailField.touched && hasEmailFieldErrors">
+      <div class="mat-error" *ngIf="emailFieldErrors['required']">
+        Sie müssen eine Email-Adresse angeben.
+      </div>
+    </div>
+    <div *ngIf="hasEmailFieldErrors">
+      <div class="mat-error" *ngIf="emailFieldErrors['pattern']">
+        Die Email-Adresse ist ungültig.
+      </div>
+    </div>
+  </div>
+</div>
+
