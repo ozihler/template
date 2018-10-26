@@ -3,8 +3,8 @@
     [formGroup]="questionForm"
     (ngSubmit)="submitQuestion()">
 
-    <user-identifiers [userIdentifiers]="questionForm.controls.userIdentifiers"></user-identifiers>
-    <question-data [questionData]="questionForm.controls.questionData"></question-data>
+    <user-identifiers [userIdentifiers]="userIdentifiers"></user-identifiers>
+    <question-data [questionData]="questionData"></question-data>
 
     <div>
       <button
@@ -19,7 +19,7 @@
 
   <div *ngIf="questions">
     <div *ngFor="let question of questions">
-      <span>{{question.userIdentifiers.username}} hat eine Frage bezüglich: "{{question.questionData.title}}"</span>
+      <span>{{question.userIdentifiers.name}} hat eine Frage bezüglich: "{{question.questionData.title}}"</span>
     </div>
   </div>
 </div>

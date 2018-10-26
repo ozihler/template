@@ -5,9 +5,9 @@ import {AppComponent} from './app.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ReactiveFormsModule} from "@angular/forms";
 import {QuestionFormComponent} from "./question-form/question-form.component";
-import { EmailFieldComponent } from './question-form/email-field/email-field.component';
-import { UserIdentifiersFieldComponent } from './question-form/username-field/user-identifiers-field.component';
-import { QuestionDataComponent } from './question-form/question-data/question-data.component';
+ import {UserIdentifiersFieldComponent} from './question-form/username-field/user-identifiers-field.component';
+import {QuestionDataComponent} from './question-form/question-data/question-data.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes = [
   {
@@ -25,16 +25,16 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     QuestionFormComponent,
-    EmailFieldComponent,
     UserIdentifiersFieldComponent,
     QuestionDataComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule {
