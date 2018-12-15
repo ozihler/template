@@ -9,7 +9,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(UserIdentifiers userIdentifiers, QuestionData questionData) {
+    private Question(UserIdentifiers userIdentifiers, QuestionData questionData) {
         this.userIdentifiers = userIdentifiers;
         this.questionData = questionData;
     }
@@ -27,5 +27,13 @@ public class Question {
 
     public QuestionData getQuestionData() {
         return questionData;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "userIdentifiers=" + userIdentifiers +
+                ", questionData=" + questionData +
+                '}';
     }
 }

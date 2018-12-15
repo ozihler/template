@@ -2,36 +2,29 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from "@angular/forms";
 import {QuestionFormComponent} from "./question-form/question-form.component";
- import {UserIdentifiersFieldComponent} from './question-form/username-field/user-identifiers-field.component';
+import {UserIdentifiersFieldComponent} from './question-form/username-field/user-identifiers-field.component';
 import {QuestionDataComponent} from './question-form/question-data/question-data.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-
-const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/question-form',
-    pathMatch: 'full'
-  },
-  {
-    path: 'question-form',
-    component: QuestionFormComponent
-  }
-];
+import {BlogComponent} from "./blog/blog.component";
+import {HomeComponent} from './home/home.component';
+import {routes} from "./routes";
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionFormComponent,
     UserIdentifiersFieldComponent,
-    QuestionDataComponent
+    QuestionDataComponent,
+    BlogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(routes),
     HttpClientModule
   ],
   providers: [HttpClient],

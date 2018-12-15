@@ -8,7 +8,7 @@ public class QuestionData {
     public QuestionData() {
     }
 
-    public QuestionData(String topics, String title, String questionText) {
+    QuestionData(String topics, String title, String questionText) {
         this.topics = topics;
         this.title = title;
         this.questionText = questionText;
@@ -24,5 +24,14 @@ public class QuestionData {
 
     public String getQuestionText() {
         return questionText;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionData{" +
+                "topics='" + topics + '\'' +
+                ", title='" + title + '\'' +
+                ", questionText='" + questionText + '\'' +
+                '}';
     }
 }

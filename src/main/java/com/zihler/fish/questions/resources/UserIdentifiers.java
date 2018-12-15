@@ -8,7 +8,7 @@ public class UserIdentifiers {
     public UserIdentifiers() {
     }
 
-    public UserIdentifiers(String name, String emailAddress) {
+    UserIdentifiers(String name, String emailAddress) {
         this.name = name;
         this.emailAddress = emailAddress;
     }
@@ -19,5 +19,13 @@ public class UserIdentifiers {
 
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "UserIdentifiers{" +
+                "name='" + name + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
     }
 }
