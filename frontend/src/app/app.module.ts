@@ -11,6 +11,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {BlogComponent} from "./blog/blog.component";
 import {HomeComponent} from './home/home.component';
 import {routes} from "./routes";
+import {MatInputModule} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {routes} from "./routes";
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

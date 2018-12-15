@@ -1,8 +1,9 @@
 package com.zihler.fish.questions.applicationservices;
 
+import com.zihler.fish.questions.dataaccess.QuestionEntity;
 import com.zihler.fish.questions.dataaccess.QuestionRepository;
-import com.zihler.fish.questions.resources.Question;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zihler.fish.questions.resources.input.QuestionInputData;
+import com.zihler.fish.questions.resources.output.QuestionOutputResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,16 @@ public class QuestionService {
         this.questionRepository = questionRepository;
     }
 
-    public List<Question> getAll() {
+    public List<QuestionOutputResource> getAll() {
         return this.questionRepository.findAll()
                 .stream()
-                .map(questionEntity -> Question.createFrom(questionEntity))
+                .map(QuestionOutputResource::create)
                 .collect(toList());
+    }
+
+    public QuestionOutputResource save(QuestionInputData questionInputData) {
+        QuestionEntity questionEntity = QuestionInputToEntityConverter.convert(questionInputData);
+        QuestionEntity savedQuestionEntity = this.questionRepository.save(questionEntity);
+        return QuestionOutputResource.create(savedQuestionEntity);
     }
 }

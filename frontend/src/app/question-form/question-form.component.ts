@@ -29,9 +29,8 @@ export class QuestionFormComponent implements OnInit {
     this.questionFormService.post(this.questionFormData())
       .subscribe(question => {
         this.questions.push(question);
+        this.questionForm.reset();
       });
-
-    this.questionForm.reset();
   }
 
 

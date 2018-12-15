@@ -24,6 +24,9 @@ export class QuestionService {
   }
 
   public static questionResourcesFrom(halResponse): Question[] {
-    return halResponse._embedded.questionResourcesFrom as Question[];
+    if (!halResponse || !halResponse._embedded ) {
+      return [];
+    }
+    return halResponse._embedded.questionOutputResources as Question[];
   }
 }

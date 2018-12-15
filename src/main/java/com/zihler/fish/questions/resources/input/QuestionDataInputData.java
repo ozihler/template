@@ -1,14 +1,14 @@
-package com.zihler.fish.questions.resources;
+package com.zihler.fish.questions.resources.input;
 
-public class QuestionData {
+public class QuestionDataInputData {
     private String topics;
     private String title;
     private String questionText;
 
-    public QuestionData() {
+    public QuestionDataInputData() {
     }
 
-    QuestionData(String topics, String title, String questionText) {
+    QuestionDataInputData(String topics, String title, String questionText) {
         this.topics = topics;
         this.title = title;
         this.questionText = questionText;

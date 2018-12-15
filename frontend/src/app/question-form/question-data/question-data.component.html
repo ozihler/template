@@ -1,35 +1,43 @@
 <div [formGroup]="questionData">
   <div>
-    <input
-      class="mat-form-field"
-      type="text"
-      id="question-topics-field"
-      name="question-topics-field"
-      formControlName="topicsField"
-      placeholder="Themen ihrer Frage"
-    />
+    <mat-form-field>
+      <input
+        matInput
+        class="mat-form-field"
+        type="text"
+        id="question-topics-field"
+        name="question-topics-field"
+        formControlName="topicsField"
+        placeholder="Themen ihrer Frage"
+      />
+    </mat-form-field>
   </div>
 
   <div>
-    <input
-      class="mat-form-field"
-      type="text"
-      id="question-title-field"
-      name="question-title-field"
-      formControlName="titleField"
-      placeholder="Titel ihrer Frage"
-    />
+    <mat-form-field>
+      <input
+        matInput
+        class="mat-form-field"
+        type="text"
+        id="question-title-field"
+        name="question-title-field"
+        formControlName="titleField"
+        placeholder="Titel ihrer Frage"
+      />
+    </mat-form-field>
   </div>
 
   <div>
+    <mat-form-field>
       <textarea
+        matInput
         class="mat-form-field"
         id="question-text-area"
         name="question-text-area"
         formControlName="questionTextArea"
-        placeholder="Ihre Frage"
-      >
+        placeholder="Ihre Frage">
       </textarea>
+    </mat-form-field>
   </div>
 
 </div>

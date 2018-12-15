@@ -1,14 +1,14 @@
-package com.zihler.fish.questions.resources;
+package com.zihler.fish.questions.resources.input;
 
-public class UserIdentifiers {
+public class UserIdentifiersInputData {
     private String name;
     private String emailAddress;
 
 
-    public UserIdentifiers() {
+    public UserIdentifiersInputData() {
     }
 
-    UserIdentifiers(String name, String emailAddress) {
+    UserIdentifiersInputData(String name, String emailAddress) {
         this.name = name;
         this.emailAddress = emailAddress;
     }
