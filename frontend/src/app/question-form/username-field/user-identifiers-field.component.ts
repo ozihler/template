@@ -12,7 +12,6 @@ export class UserIdentifiersFieldComponent implements OnInit {
   constructor() {
   }
 
-
   get emailField(): AbstractControl {
     return this.userIdentifiers.get('emailField');
   }

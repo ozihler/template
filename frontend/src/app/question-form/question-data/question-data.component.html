@@ -1,6 +1,7 @@
 <div [formGroup]="questionData">
   <div>
-    <mat-form-field>
+    <mat-form-field floatLabel="never">
+      <label for="question-topics-field">Themen ihrer Frage:</label>
       <input
         matInput
         class="mat-form-field"
@@ -8,13 +9,14 @@
         id="question-topics-field"
         name="question-topics-field"
         formControlName="topicsField"
-        placeholder="Themen ihrer Frage"
       />
+      <mat-placeholder class="placeholder">Themen ihrer Frage</mat-placeholder>
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field>
+    <mat-form-field floatLabel="never">
+      <label for="question-title-field">Titel ihrer Frage: </label>
       <input
         matInput
         class="mat-form-field"
@@ -22,21 +24,22 @@
         id="question-title-field"
         name="question-title-field"
         formControlName="titleField"
-        placeholder="Titel ihrer Frage"
       />
+      <mat-placeholder class="placeholder">Titel ihrer Frage</mat-placeholder>
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field>
+    <mat-form-field floatLabel="never">
+      <label for="question-text-area">Ihre Frage: </label>
       <textarea
         matInput
         class="mat-form-field"
         id="question-text-area"
         name="question-text-area"
-        formControlName="questionTextArea"
-        placeholder="Ihre Frage">
+        formControlName="questionTextArea">
       </textarea>
+      <mat-placeholder class="placeholder">Ihre Frage</mat-placeholder>
     </mat-form-field>
   </div>
 
