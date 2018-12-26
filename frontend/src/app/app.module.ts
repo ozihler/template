@@ -9,7 +9,6 @@ import {UserIdentifiersFieldComponent} from './question-form/username-field/user
 import {QuestionDataComponent} from './question-form/question-data/question-data.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {BlogComponent} from "./blog/blog.component";
-import {HomeComponent} from './home/home.component';
 import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -19,8 +18,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     QuestionFormComponent,
     UserIdentifiersFieldComponent,
     QuestionDataComponent,
-    BlogComponent,
-    HomeComponent
+    BlogComponent
   ],
   imports: [
     BrowserModule,
