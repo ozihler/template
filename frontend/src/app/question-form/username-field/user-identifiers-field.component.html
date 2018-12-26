@@ -1,42 +1,35 @@
 <div [formGroup]="userIdentifiers">
   <div>
-    <mat-form-field floatLabel="never">
-      <label for="name-field">Ihr Name: </label>
-      <input
-        matInput
-        type="text"
-        id="name-field"
-        name="name-field"
-        formControlName="nameField"
-      />
-      <mat-placeholder class="placeholder">Ihr Name</mat-placeholder>
-    </mat-form-field>
+    <label for="name-field">Ihr Name: </label>
+    <input
+
+      type="text"
+      id="name-field"
+      name="name-field"
+      formControlName="nameField"
+    />
   </div>
 
   <div>
-    <mat-form-field floatLabel="never">
-      <label for="email-field">Ihre E-Mail-Addresse: </label>
-      <input
-        type="text"
-        id="email-field"
-        name="email-field"
-        formControlName="emailField"
-        matInput
-      />
-      <mat-placeholder class="placeholder">Ihre E-Mail-Addresse</mat-placeholder>
-    </mat-form-field>
+    <label for="email-field">Ihre E-Mail-Addresse: </label>
+    <input
+      type="text"
+      id="email-field"
+      name="email-field"
+      formControlName="emailField"
+    />
   </div>
 
   <div *ngIf="emailField.touched && hasEmailFieldErrors">
-    <mat-error *ngIf="emailFieldErrors['required']" class="mat-error">
+    <span *ngIf="emailFieldErrors['required']" class="mat-error">
       Sie müssen eine Email-Adresse angeben.
-    </mat-error>
+    </span>
   </div>
 
   <div *ngIf="hasEmailFieldErrors">
-    <mat-error *ngIf="emailFieldErrors['pattern']" class="mat-error">
+    <span *ngIf="emailFieldErrors['pattern']" class="mat-error">
       Die Email-Adresse ist ungültig.
-    </mat-error>
+    </span>
   </div>
 
 </div>

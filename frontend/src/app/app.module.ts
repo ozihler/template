@@ -11,7 +11,6 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {BlogComponent} from "./blog/blog.component";
 import {HomeComponent} from './home/home.component';
 import {routes} from "./routes";
-import {MatInputModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -29,7 +28,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserAnimationsModule,
-    MatInputModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
