@@ -1,5 +1,9 @@
 <span *ngIf="error">{{error}}</span>
 
+<div>
+  <input type="text" placeholder="search courses"/>
+</div>
+
 <div class="card-columns">
   <a *ngFor='let preview of previews' [routerLink]="['/course',preview.id]">
     <app-course-preview [preview]="preview" [maxRating]="maxRating"></app-course-preview>
