@@ -1,9 +1,13 @@
 import {Routes} from "@angular/router";
 import {QuestionFormComponent} from "./question-form/question-form.component";
-import {BlogComponent} from "./blog/blog.component";
+import {CoursesComponent} from "./courses/courses.component";
+import {HomeComponent} from "./home/home.component";
+import {CourseDetailsComponent} from "./course-details/course-details.component";
 
 export const routes: Routes = [
-  {path: 'blog', component: BlogComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'question-form', component: QuestionFormComponent},
-  {path: '', redirectTo: '/blog', pathMatch: 'full'}
+  {path: 'courses', component: CoursesComponent},
+  {path: 'course/:id', component: CourseDetailsComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

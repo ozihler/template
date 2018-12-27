@@ -1,0 +1,3 @@
+interface MaxRating {
+  maxRating: number;
+}

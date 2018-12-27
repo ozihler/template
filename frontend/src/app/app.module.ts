@@ -8,9 +8,11 @@ import {QuestionFormComponent} from "./question-form/question-form.component";
 import {UserIdentifiersFieldComponent} from './question-form/username-field/user-identifiers-field.component';
 import {QuestionDataComponent} from './question-form/question-data/question-data.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {BlogComponent} from "./blog/blog.component";
-import {routes} from "./routes";
+ import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HomeComponent } from './home/home.component';
+import { CoursesComponent } from './courses/courses.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     QuestionFormComponent,
     UserIdentifiersFieldComponent,
     QuestionDataComponent,
-    BlogComponent
+    HomeComponent,
+    CoursesComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

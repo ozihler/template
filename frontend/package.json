@@ -22,7 +22,9 @@
     "@angular/platform-browser-dynamic": "^7.1.4",
     "@angular/router": "^7.1.4",
     "angular": "^1.7.5",
+    "bootstrap": "^4.2.1",
     "core-js": "^2.6.1",
+    "font-awesome": "^4.7.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
