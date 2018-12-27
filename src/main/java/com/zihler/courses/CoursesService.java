@@ -1,12 +1,11 @@
 package com.zihler.courses;
 
+import com.zihler.courses.output.Course;
 import com.zihler.courses.output.MaxRating;
 import com.zihler.courses.output.Preview;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service("coursesService")
 public class CoursesService {
@@ -21,7 +20,7 @@ public class CoursesService {
                             String.format("Title %d", courseId),
                             String.format("Description %d", courseId),
                             String.format("courses/course/%d", courseId),
-                            new Random().nextInt(5)+1
+                            new Random().nextInt(5) + 1
                     )
             );
         }
@@ -32,4 +31,23 @@ public class CoursesService {
     MaxRating getCurrentMaxRating() {
         return new MaxRating(5);
     }
+
+    Optional<Course> getCourse(long id) {
+        Map<Long, Course> courses = new HashMap<>();
+
+        for (long courseId = 0; courseId < 50; courseId++) {
+            courses.put(courseId,
+                    new Course(
+                            courseId,
+                            String.format("Title %d", courseId),
+                            String.format("Description %d", courseId),
+                            String.format("courses/course/%d", courseId),
+                            new Random().nextInt(5) + 1
+                    )
+            );
+        }
+
+        return Optional.of(courses.get(id));
+    }
+
 }

@@ -17,8 +17,11 @@ export class CoursesService {
     return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews`);
   }
 
-  public getMaxRating():Observable<MaxRating> {
+  public getMaxRating(): Observable<MaxRating> {
     return this.httpClient.get<MaxRating>(`${this.baseUrl}/currentMaxRating`);
+  }
 
+  public getCourse(id: string): Observable<Course> {
+    return this.httpClient.get<Course>(`${this.baseUrl}/${id}`);
   }
 }

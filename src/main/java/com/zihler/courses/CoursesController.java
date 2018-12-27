@@ -1,12 +1,11 @@
 package com.zihler.courses;
 
+import com.zihler.courses.output.Course;
 import com.zihler.courses.output.MaxRating;
 import com.zihler.courses.output.Preview;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +25,12 @@ public class CoursesController {
         return "Hello";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public Course getCourse(@PathVariable("id") long id) {
+        return coursesService.getCourse(id)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+    }
+
     @RequestMapping(value = "/previews", method = RequestMethod.GET)
     public List<Preview> getPreviews() {
         return coursesService.getPreviews();
@@ -35,8 +40,6 @@ public class CoursesController {
     public MaxRating getCurrentMaxRating() {
         return coursesService.getCurrentMaxRating();
     }
-
-
 
 
 }
