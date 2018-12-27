@@ -1,7 +1,7 @@
 package com.zihler.courses;
 
 import com.zihler.courses.output.MaxRating;
-import com.zihler.courses.output.Thumb;
+import com.zihler.courses.output.Preview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +26,9 @@ public class CoursesController {
         return "Hello";
     }
 
-    @RequestMapping(value = "/thumbs", method = RequestMethod.GET)
-    public List<Thumb> getThumbs() {
-        return coursesService.getThumbs();
+    @RequestMapping(value = "/previews", method = RequestMethod.GET)
+    public List<Preview> getPreviews() {
+        return coursesService.getPreviews();
     }
 
     @RequestMapping(value = "/currentMaxRating", method = RequestMethod.GET)

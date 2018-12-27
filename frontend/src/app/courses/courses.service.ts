@@ -8,17 +8,17 @@ import {environment} from "../../environments/environment";
 })
 export class CoursesService {
 
-  private baseUrl = environment.baseUrl;
+  private baseUrl = `${environment.baseUrl}courses`;
 
   constructor(private httpClient: HttpClient) {
   }
 
-  public getThumbs(): Observable<Thumb[]> {
-    return this.httpClient.get<Thumb[]>(`${this.baseUrl}courses/thumbs`);
+  public getPreviews(): Observable<Preview[]> {
+    return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews`);
   }
 
   public getMaxRating():Observable<MaxRating> {
-    return this.httpClient.get<MaxRating>(`${this.baseUrl}courses/currentMaxRating`);
+    return this.httpClient.get<MaxRating>(`${this.baseUrl}/currentMaxRating`);
 
   }
 }

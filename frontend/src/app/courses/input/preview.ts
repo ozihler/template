@@ -1,4 +1,4 @@
-interface Thumb {
+interface Preview {
   id: number;
   title: string;
   description: string;

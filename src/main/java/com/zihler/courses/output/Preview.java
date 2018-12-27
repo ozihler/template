@@ -1,16 +1,16 @@
 package com.zihler.courses.output;
 
-public class Thumb {
+public class Preview {
     private long id;
     private String title;
     private String description;
     private String thumbnailUrl;
     private int rating;
 
-    public Thumb() {
+    public Preview() {
     }
 
-    public Thumb(long id, String title, String description, String thumbnailUrl, int rating) {
+    public Preview(long id, String title, String description, String thumbnailUrl, int rating) {
         this.id = id;
         this.title = title;
         this.description = description;

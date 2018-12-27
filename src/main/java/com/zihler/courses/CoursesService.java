@@ -1,7 +1,7 @@
 package com.zihler.courses;
 
 import com.zihler.courses.output.MaxRating;
-import com.zihler.courses.output.Thumb;
+import com.zihler.courses.output.Preview;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,13 +10,13 @@ import java.util.Random;
 
 @Service("coursesService")
 public class CoursesService {
-    List<Thumb> getThumbs() {
+    List<Preview> getPreviews() {
 
-        List<Thumb> thumbs = new ArrayList<>();
+        List<Preview> previews = new ArrayList<>();
 
         for (int courseId = 0; courseId < 50; courseId++) {
-            thumbs.add(
-                    new Thumb(
+            previews.add(
+                    new Preview(
                             courseId,
                             String.format("Title %d", courseId),
                             String.format("Description %d", courseId),
@@ -26,7 +26,7 @@ public class CoursesService {
             );
         }
 
-        return thumbs;
+        return previews;
     }
 
     MaxRating getCurrentMaxRating() {

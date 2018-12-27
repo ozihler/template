@@ -7,7 +7,7 @@ import {CourseDetailsComponent} from "./course-details/course-details.component"
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'question-form', component: QuestionFormComponent},
-  {path: 'courses', component: CoursesComponent},
+  {path: 'previews', component: CoursesComponent},
   {path: 'course/:id', component: CourseDetailsComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { CoursePreviewComponent } from './course-preview/course-preview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
     QuestionDataComponent,
     HomeComponent,
     CoursesComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    CoursePreviewComponent
   ],
   imports: [
     BrowserModule,

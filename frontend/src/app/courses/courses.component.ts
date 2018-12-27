@@ -7,29 +7,27 @@ import {CoursesService} from "./courses.service";
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  public maxRating;
-  public courses: Thumb[] = [];
+  public maxRating: number[] = [];
+  public previews: Preview[] = [];
   public error: any;
 
   constructor(private coursesService: CoursesService) {
-    this.maxRating = Array(5).fill(5).map((x, i) => i);
-    console.log(this.maxRating)
   }
 
   ngOnInit() {
     this.coursesService.getMaxRating()
       .subscribe(maxRating => {
         this.maxRating = CoursesComponent.createMaxRatingList(maxRating);
-        this.fetchCourseThumbs();
+        this.fetchCoursePreviews();
       }, error => {
         this.error = error;
       });
   }
 
-  private fetchCourseThumbs() {
-    this.coursesService.getThumbs()
-      .subscribe(courses => {
-        this.courses = courses;
+  private fetchCoursePreviews() {
+    this.coursesService.getPreviews()
+      .subscribe(previews => {
+        this.previews = previews;
       }, error => {
         this.error = error;
       })

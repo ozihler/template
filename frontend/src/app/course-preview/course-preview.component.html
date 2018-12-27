@@ -1,0 +1,13 @@
+<div class="card">
+  <img class="card-img-top" src="{{preview.thumbnailUrl}}" alt="{{preview.title}}">
+  <div class="card-body">
+    <h5 class="card-title">{{preview.title}}</h5>
+    <p class="card-text">{{preview.description}}</p>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">
+      <span *ngFor="let rating of maxRating" class="fa"
+            [ngClass]="{ 'fa-star':preview.rating > rating, 'fa-star-o':preview.rating <= rating }"></span>
+    </small>
+  </div>
+</div>
