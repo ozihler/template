@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  name: string = environment.name;
 
 }

@@ -11,9 +11,17 @@
 }
 
 .mdl-layout__title {
-  font-size: 14px;
+  font-size: 20px;
   text-align: center;
   font-weight: 300;
+  color: black;
+}
+.mdl-layout__title__label {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: darkred;
+  font-style: italic;
 }
 
 .is-compact .mdl-layout__title span {
@@ -29,7 +37,7 @@
 }
 
 .portfolio-logo {
-  background: url(../resources/images/logo.png) 50% no-repeat;
+  /*background: url(../resources/images/logo.png) 50% no-repeat;*/
   background-size: cover;
   height: 150px;
   width: 150px;
@@ -77,9 +85,8 @@
   display: block;
   position: absolute;
   bottom: 0;
-  left: 0;
-  background-color: rgb(255,64,129);
   left: 15%;
+  background-color: rgb(255,64,129);
 }
 
 .portfolio-card .mdl-card__title {
