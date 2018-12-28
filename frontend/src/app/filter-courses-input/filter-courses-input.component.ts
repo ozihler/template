@@ -14,8 +14,8 @@ export class FilterCoursesInputComponent implements OnInit {
   public filterCoursesInput: FormControl;
   @Output()
   public filterCoursesEvent: EventEmitter<Preview[]> = new EventEmitter();
-  private error: string;
-  private numberOfMatches: number = -1;
+  public error: string;
+  public numberOfMatches: number = -1;
 
   constructor(private coursesService: CoursesService) {
     this.filterCoursesInput = this.createFilterFormControl();
