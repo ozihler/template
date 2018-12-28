@@ -1,7 +1,7 @@
 <span *ngIf="error">Fehler aufgetreten: {{error}}</span>
 
 <app-filter-courses-input (filterCoursesEvent)="displayFilteredCoursePreviews($event)"></app-filter-courses-input>
-
+<br/>
 <div class="card-columns">
   <a *ngFor='let preview of previews' [routerLink]="['/course',preview.id]">
     <app-course-preview [preview]="preview" [maxRating]="maxRating"></app-course-preview>
