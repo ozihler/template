@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CoursesService} from "./courses.service";
+import {MaxRatingService} from "../star-rating/max-rating.service";
 
 @Component({
   selector: 'app-courses',
@@ -17,7 +18,7 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
     this.coursesService.getMaxRating()
       .subscribe(maxRating => {
-        this.maxRating = CoursesComponent.createMaxRatingList(maxRating);
+        this.maxRating = MaxRatingService.createMaxRatingList(maxRating.maxRating);
         this.fetchCoursePreviews();
       }, error => {
         this.error = error;
@@ -26,14 +27,11 @@ export class CoursesComponent implements OnInit {
 
   private fetchCoursePreviews() {
     this.coursesService.getPreviews()
-      .subscribe(previews => {
-        this.previews = previews;
+      .subscribe(courses => {
+        this.previews = courses;
       }, error => {
         this.error = error;
       })
   }
 
-  private static createMaxRatingList(maxRating) {
-    return Array(maxRating.maxRating).fill(maxRating.maxRating).map((x, i) => i);
-  }
 }

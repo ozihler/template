@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CoursePreviewComponent } from './course-preview/course-preview.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CoursePreviewComponent } from './course-preview/course-preview.componen
     HomeComponent,
     CoursesComponent,
     CourseDetailsComponent,
-    CoursePreviewComponent
+    CoursePreviewComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

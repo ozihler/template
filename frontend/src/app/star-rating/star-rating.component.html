@@ -1,0 +1,6 @@
+<span *ngFor="let rating of maxRating"
+      class="fa"
+      [ngClass]=" {
+          'fa-star':courseRating > rating,
+          'fa-star-o':courseRating <= rating
+      }"></span>

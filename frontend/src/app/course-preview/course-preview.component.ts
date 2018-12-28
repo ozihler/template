@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CoursePreviewComponent implements OnInit {
   @Input() preview: Preview;
-  @Input() maxRating: number;
+  @Input() maxRating: number[];
 
   constructor() {
   }
