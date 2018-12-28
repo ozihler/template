@@ -5,6 +5,8 @@ import {Injectable} from '@angular/core';
 })
 export class MaxRatingService {
   static createMaxRatingList(maxRating: number) {
-    return Array(maxRating).fill(maxRating).map((x, i) => i);
+    return Array(maxRating)
+      .fill(maxRating)
+      .map((x, i) => i);
   }
 }

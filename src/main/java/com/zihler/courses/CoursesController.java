@@ -3,11 +3,13 @@ package com.zihler.courses;
 import com.zihler.courses.output.Course;
 import com.zihler.courses.output.MaxRating;
 import com.zihler.courses.output.Preview;
+import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -32,8 +34,11 @@ public class CoursesController {
     }
 
     @RequestMapping(value = "/previews", method = RequestMethod.GET)
-    public List<Preview> getPreviews() {
-        return coursesService.getPreviews();
+    public List<Preview> getPreviews(@RequestParam(value = "q", required = false) String query) {
+        if (StringUtils.isBlank(query)) {
+            return coursesService.getPreviews();
+        }
+        return coursesService.getPreviewsFilteredBy(query);
     }
 
     @RequestMapping(value = "/currentMaxRating", method = RequestMethod.GET)

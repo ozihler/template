@@ -34,6 +34,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

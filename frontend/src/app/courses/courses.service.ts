@@ -17,6 +17,10 @@ export class CoursesService {
     return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews`);
   }
 
+  public getCoursePreviewsStartingWith(courseFilterText: string): Observable<Preview[]> {
+    return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews?q=${courseFilterText}`);
+  }
+
   public getMaxRating(): Observable<MaxRating> {
     return this.httpClient.get<MaxRating>(`${this.baseUrl}/currentMaxRating`);
   }

@@ -1,7 +1,10 @@
-<span *ngIf="error">{{error}}</span>
+<span *ngIf="error">Fehler aufgetreten: {{error}}</span>
 
 <div>
-  <input type="text" placeholder="search courses"/>
+  <input class="form-control form-control-lg" type="text" [formControl]="filterCoursesInput" placeholder="Kurse suchen, die den Filtertext beinhalten">
+</div>
+<div>
+  <span>Sie suchen nach: {{filterCoursesInput.value}}</span>
 </div>
 
 <div class="card-columns">
