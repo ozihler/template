@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CoursesService} from "./courses.service";
 import {MaxRatingService} from "../star-rating/max-rating.service";
-import {FormControl} from "@angular/forms";
-import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 
 @Component({
   selector: 'app-courses',
@@ -13,20 +11,8 @@ export class CoursesComponent implements OnInit {
   maxRating: number[] = [];
   previews: Preview[] = [];
   error: string;
-  filterCoursesInput: FormControl;
 
   constructor(private coursesService: CoursesService) {
-    this.filterCoursesInput = this.createFilterFormControl();
-  }
-
-  private createFilterFormControl(): FormControl {
-    let formControl = new FormControl('');
-    formControl.valueChanges
-      .pipe(
-        debounceTime(400),
-        distinctUntilChanged())
-      .subscribe(query => this.filterCourses(query));
-    return formControl;
   }
 
   ngOnInit() {
@@ -39,17 +25,12 @@ export class CoursesComponent implements OnInit {
       });
   }
 
-  private fetchCoursePreviews() {
-    this.coursesService.getPreviews()
-      .subscribe(previews => {
-        this.previews = previews;
-      }, error => {
-        this.error = JSON.stringify(error);
-      });
+  public displayFilteredCoursePreviews(previews: Preview[]): void {
+    this.previews = previews;
   }
 
-  public filterCourses(query: string) {
-    this.coursesService.getCoursePreviewsStartingWith(query)
+  private fetchCoursePreviews(): void {
+    this.coursesService.getPreviews()
       .subscribe(previews => {
         this.previews = previews;
       }, error => {

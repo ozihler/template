@@ -1,11 +1,6 @@
 <span *ngIf="error">Fehler aufgetreten: {{error}}</span>
 
-<div>
-  <input class="form-control form-control-lg" type="text" [formControl]="filterCoursesInput" placeholder="Kurse suchen, die den Filtertext beinhalten">
-</div>
-<div>
-  <span>Sie suchen nach: {{filterCoursesInput.value}}</span>
-</div>
+<app-filter-courses-input (filterCoursesEvent)="displayFilteredCoursePreviews($event)"></app-filter-courses-input>
 
 <div class="card-columns">
   <a *ngFor='let preview of previews' [routerLink]="['/course',preview.id]">

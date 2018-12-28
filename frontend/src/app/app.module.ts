@@ -8,13 +8,14 @@ import {QuestionFormComponent} from "./question-form/question-form.component";
 import {UserIdentifiersFieldComponent} from './question-form/username-field/user-identifiers-field.component';
 import {QuestionDataComponent} from './question-form/question-data/question-data.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
- import {routes} from "./routes";
+import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { HomeComponent } from './home/home.component';
-import { CoursesComponent } from './courses/courses.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { CoursePreviewComponent } from './course-preview/course-preview.component';
-import { StarRatingComponent } from './star-rating/star-rating.component';
+import {HomeComponent} from './home/home.component';
+import {CoursesComponent} from './courses/courses.component';
+import {CourseDetailsComponent} from './course-details/course-details.component';
+import {CoursePreviewComponent} from './course-preview/course-preview.component';
+import {StarRatingComponent} from './star-rating/star-rating.component';
+import {FilterCoursesInputComponent} from './filter-courses-input/filter-courses-input.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     CoursesComponent,
     CourseDetailsComponent,
     CoursePreviewComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    FilterCoursesInputComponent
   ],
   imports: [
     BrowserModule,
