@@ -4,9 +4,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from "@angular/forms";
-import {QuestionFormComponent} from "./question-form/question-form.component";
-import {UserIdentifiersFieldComponent} from './question-form/username-field/user-identifiers-field.component';
-import {QuestionDataComponent} from './question-form/question-data/question-data.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -20,9 +17,6 @@ import {FilterCoursesInputComponent} from './filter-courses-input/filter-courses
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionFormComponent,
-    UserIdentifiersFieldComponent,
-    QuestionDataComponent,
     HomeComponent,
     CoursesComponent,
     CourseDetailsComponent,

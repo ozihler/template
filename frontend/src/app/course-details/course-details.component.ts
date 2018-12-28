@@ -9,17 +9,17 @@ import {CoursesService} from "../courses/courses.service";
   styleUrls: ['./course-details.component.css']
 })
 export class CourseDetailsComponent implements OnInit {
-  private course: Course;
-  private error: any;
+  course: Course;
+  error: any;
 
   constructor(private route: ActivatedRoute, private courseService: CoursesService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.courseService.getCourse(params['id']).subscribe(course =>{
+      this.courseService.getCourse(params['id']).subscribe(course => {
         this.course = course;
-      }, error=>{
+      }, error => {
         this.error = error;
       });
     });

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {environment} from "../environments/environment";
 
 @Component({
@@ -6,7 +6,6 @@ import {environment} from "../environments/environment";
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-
   name: string = environment.name;
-
+  isProd: boolean = environment.production;
 }
