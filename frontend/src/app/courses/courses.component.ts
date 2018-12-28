@@ -30,7 +30,7 @@ export class CoursesComponent implements OnInit {
   }
 
   private fetchCoursePreviews(): void {
-    this.coursesService.getPreviews()
+    this.coursesService.getCoursePreviews()
       .subscribe(previews => {
         this.previews = previews;
       }, error => {

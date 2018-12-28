@@ -13,12 +13,12 @@ export class CoursesService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getPreviews(): Observable<Preview[]> {
+  public getCoursePreviews(): Observable<Preview[]> {
     return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews`);
   }
 
-  public getCoursePreviewsStartingWith(courseFilterText: string): Observable<Preview[]> {
-    return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews?q=${courseFilterText}`);
+  public getCoursePreviewsContaining(filterText: string): Observable<Preview[]> {
+    return this.httpClient.get<Preview[]>(`${this.baseUrl}/previews?q=${filterText}`);
   }
 
   public getMaxRating(): Observable<MaxRating> {

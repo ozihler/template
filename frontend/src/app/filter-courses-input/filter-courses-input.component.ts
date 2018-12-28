@@ -9,9 +9,11 @@ import {debounceTime, distinctUntilChanged} from "rxjs/operators";
   styleUrls: ['./filter-courses-input.component.css']
 })
 export class FilterCoursesInputComponent implements OnInit {
-  filterCoursesInput: FormControl;
-  @Output() filterCoursesEvent: EventEmitter<Preview[]> = new EventEmitter();
-  private FILTER_FORM_CONTROL_DEBOUNCE_TIME_IN_MILLISECS: number = 400;
+  private static FILTER_FORM_CONTROL_DEBOUNCE_TIME_IN_MILLISECS: number = 400;
+
+  public filterCoursesInput: FormControl;
+  @Output()
+  public filterCoursesEvent: EventEmitter<Preview[]> = new EventEmitter();
   private error: string;
   private numberOfMatches: number = -1;
 
@@ -20,7 +22,7 @@ export class FilterCoursesInputComponent implements OnInit {
   }
 
   public filterCourses(query: string) {
-    this.coursesService.getCoursePreviewsStartingWith(query)
+    this.coursesService.getCoursePreviewsContaining(query)
       .subscribe(previews => {
         this.numberOfMatches = previews.length;
         this.filterCoursesEvent.emit(previews);
@@ -36,7 +38,7 @@ export class FilterCoursesInputComponent implements OnInit {
     let formControl = new FormControl('');
     formControl.valueChanges
       .pipe(
-        debounceTime(this.FILTER_FORM_CONTROL_DEBOUNCE_TIME_IN_MILLISECS),
+        debounceTime(FilterCoursesInputComponent.FILTER_FORM_CONTROL_DEBOUNCE_TIME_IN_MILLISECS),
         distinctUntilChanged())
       .subscribe(query => this.filterCourses(query));
     return formControl;
