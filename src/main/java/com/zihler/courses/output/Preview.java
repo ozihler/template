@@ -10,12 +10,22 @@ public class Preview {
     public Preview() {
     }
 
-    public Preview(long id, String title, String description, String thumbnailUrl, int rating) {
+    private Preview(long id, String title, String description, String thumbnailUrl, int rating) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
         this.rating = rating;
+    }
+
+    public static Preview createPreviewFrom(Course course) {
+        return new Preview(
+                course.getId(),
+                course.getTitle(),
+                course.getDescription(),
+                course.getThumbnailUrl(),
+                course.getRating()
+        );
     }
 
     public long getId() {

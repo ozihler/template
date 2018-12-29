@@ -10,17 +10,15 @@ import java.util.stream.Collectors;
 
 @Service("coursesService")
 public class CoursesService {
-
-    private List<Preview> previews;
-    private Map<Long, Course> courses = new HashMap<>();
     private long courseCounter = 1;
 
+    private Map<Long, Course> courses = new HashMap<>();
+
     public CoursesService() {
-        previews = createPreviews();
     }
 
     List<Preview> getPreviews() {
-        return previews;
+        return createPreviews();
     }
 
     MaxRating getCurrentMaxRating() {
@@ -28,7 +26,8 @@ public class CoursesService {
     }
 
     List<Preview> getPreviewsFilteredBy(String query) {
-        return previews.stream()
+        return createPreviews()
+                .stream()
                 .filter(preview -> filterTexts(query, preview))
                 .collect(Collectors.toList());
     }
@@ -42,35 +41,10 @@ public class CoursesService {
     }
 
     private List<Preview> createPreviews() {
-        List<Preview> previews = new ArrayList<>();
+        return this.courses.values().stream()
+                .map(Preview::createPreviewFrom)
+                .collect(Collectors.toList());
 
-        for (int courseId = 0; courseId < 50; courseId++) {
-            String startText = getStartText(courseId);
-            previews.add(
-                    new Preview(
-                            courseId,
-                            String.format("%s Title %d", startText, courseId),
-                            String.format("%s Description %d", startText, courseId),
-                            String.format("courses/course/%d", courseId),
-                            new Random().nextInt(5) + 1
-                    )
-            );
-        }
-
-        return previews;
-    }
-
-    private String getStartText(int courseId) {
-        if (courseId % 3 == 0) {
-            return "Clean Code";
-        }
-        if (courseId % 3 == 1) {
-            return "Legacy Code";
-        }
-        if (courseId % 3 == 2) {
-            return "Domain Driven Design";
-        }
-        return "Unknown";
     }
 
     Optional<Course> getCourse(long id) {
