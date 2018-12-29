@@ -2,7 +2,8 @@
   <span *ngIf="error">Fehler aufgetreten: {{error}}</span>
   <div>
     <input [formControl]="filterCoursesInput"
-           class="form-control form-control-lg" placeholder="Kurse suchen, die den Filtertext beinhalten"
+           class="form-control form-control-lg"
+           placeholder="Kurse suchen, die den Filtertext beinhalten"
            type="text"/>
   </div>
   <div *ngIf="filterCoursesInput.value">

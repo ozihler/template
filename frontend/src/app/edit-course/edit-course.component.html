@@ -1,0 +1,36 @@
+<h2>Markdown nutzen, um einen Kurs zu erstellen</h2>
+<label>Kurs Titel: <input [value]="course?.title"/></label>
+<label>Kurs Beschreibung: <input [value]="course?.description"/></label>
+<br/>
+<label>Kursteil Titel <input [(ngModel)]="currentCourseSectionTitle"/></label>
+
+<md-editor name="Content"
+           [(ngModel)]="currentCourseSectionMarkDown"
+           [height]="'500px'"
+           required>
+</md-editor>
+
+<button (click)="addCourseElement()">Kursseite hinzufügen</button>
+
+<br/>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Kurselement</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let courseSection of course?.courseSections">
+    <td>{{courseSection.sectionTitle}}</td>
+    <td>löschen</td>
+    <td>
+      <a [routerLink]="['/edit-course-section', courseSection.id]">editieren</a></td>
+  </tr>
+  </tbody>
+</table>
+<!--<md-editor name="Content"-->
+<!--[options]="options"-->
+<!--[ngModel]="courseSection"-->
+<!--mode="preview"></md-editor>-->

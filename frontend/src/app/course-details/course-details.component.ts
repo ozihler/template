@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CoursesService} from "../courses/courses.service";
+import {Course} from "../input/course";
 
 
 @Component({
@@ -17,11 +18,12 @@ export class CourseDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.courseService.getCourse(params['id']).subscribe(course => {
-        this.course = course;
-      }, error => {
-        this.error = error;
-      });
+      this.courseService.getCourse(params['id'])
+        .subscribe(course => {
+          this.course = course;
+        }, error => {
+          this.error = error;
+        });
     });
   }
 

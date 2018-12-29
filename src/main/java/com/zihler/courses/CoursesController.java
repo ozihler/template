@@ -9,7 +9,6 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -31,6 +30,16 @@ public class CoursesController {
     public Course getCourse(@PathVariable("id") long id) {
         return coursesService.getCourse(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Course postCourse(@RequestBody Course course) {
+        return this.coursesService.store(course);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public Course putCourse(@RequestBody Course course, @PathVariable("id") long id) {
+        return this.coursesService.store(id, course);
     }
 
     @RequestMapping(value = "/previews", method = RequestMethod.GET)

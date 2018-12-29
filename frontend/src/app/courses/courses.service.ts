@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {Course} from "../input/course";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,13 @@ export class CoursesService {
 
   public getCourse(id: string): Observable<Course> {
     return this.httpClient.get<Course>(`${this.baseUrl}/${id}`);
+  }
+
+  public postCourse(course: Course): Observable<Course> {
+    return this.httpClient.post<Course>(`${this.baseUrl}`, course);
+  }
+
+  public putCourse(course: Course): Observable<Course> {
+    return this.httpClient.put<Course>(`${this.baseUrl}/${course.id}`, course);
   }
 }

@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 public class CoursesService {
 
     private List<Preview> previews;
+    private Map<Long, Course> courses = new HashMap<>();
+    private long courseCounter = 1;
 
     public CoursesService() {
         previews = createPreviews();
@@ -72,20 +74,28 @@ public class CoursesService {
     }
 
     Optional<Course> getCourse(long id) {
-        Map<Long, Course> courses = new HashMap<>();
-
-        for (long courseId = 0; courseId < 50; courseId++) {
-            courses.put(courseId,
-                    new Course(
-                            courseId,
-                            String.format("Title %d", courseId),
-                            String.format("Description %d", courseId),
-                            String.format("courses/course/%d", courseId),
-                            new Random().nextInt(5) + 1
-                    )
-            );
-        }
-
         return Optional.of(courses.get(id));
+    }
+
+    Course store(Course course) {
+        long courseId = this.courseCounter++;
+        this.courses.put(courseId, createCourse(course, courseId));
+        return this.courses.get(courseId);
+    }
+
+    private Course createCourse(Course course, long courseId) {
+        return new Course(
+                courseId,
+                course.getTitle(),
+                course.getDescription(),
+                course.getThumbnailUrl(),
+                course.getRating(),
+                course.getCourseSections() == null ? new ArrayList<>() : course.getCourseSections()
+        );
+    }
+
+    Course store(long id, Course course) {
+        this.courses.put(id, createCourse(course, id));
+        return this.courses.get(id);
     }
 }
