@@ -29,11 +29,25 @@ export class EditCourseComponent implements OnInit {
     });
   }
 
-  addCourseElement() {
+  addCourseSection() {
     let courseSection = new CourseSection(this.currentCourseSectionTitle, this.currentCourseSectionMarkDown);
     this.course.courseSections.push(courseSection);
 
-    this.courseService.putCourse(this.course)
+    this.update(this.course);
+  }
+
+  deleteCourseSection(courseSection: CourseSection): void {
+    this.course.courseSections = this.copyCourseSectionsWithout(courseSection);
+
+    this.update(this.course);
+  }
+
+  private handleError(error) {
+    this.error = JSON.stringify(error);
+  }
+
+  private update(courseToUpdate: Course) {
+    this.courseService.putCourse(courseToUpdate)
       .subscribe(course => {
         this.course = course;
       }, error => {
@@ -41,7 +55,13 @@ export class EditCourseComponent implements OnInit {
       });
   }
 
-  private handleError(error) {
-    this.error = JSON.stringify(error);
+  private copyCourseSectionsWithout(courseSectionToDelete: CourseSection) {
+    let courseSectionsCopy: CourseSection[] = [];
+    for (const courseSection of this.course.courseSections) {
+      if (courseSection.id !== courseSectionToDelete.id) {
+        courseSectionsCopy.push(courseSection);
+      }
+    }
+    return courseSectionsCopy;
   }
 }
