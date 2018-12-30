@@ -110,6 +110,7 @@ public class CoursesService {
         return updatedCourseData;
     }
 
+    // TODO: 30.12.2018 Move to own service! (everything related to course section)
     private List<CourseSection> updateCourseSections(long id, Course updatedCourse, List<CourseSectionData> courseSectionsData) {
         if (CollectionUtils.isEmpty(courseSectionsData)) {
             return new ArrayList<>();
