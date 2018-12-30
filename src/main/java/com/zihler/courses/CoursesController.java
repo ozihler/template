@@ -38,7 +38,7 @@ public class CoursesController {
         return this.coursesService.createFrom(courseData);
     }
 
-    private void assureCourseSectionDataIsInitialized(@RequestBody CourseData courseData) {
+    private void assureCourseSectionDataIsInitialized(CourseData courseData) {
         if (Objects.isNull(courseData.getCourseSections())) {
             courseData.setCourseSections(new ArrayList<>());
         }
