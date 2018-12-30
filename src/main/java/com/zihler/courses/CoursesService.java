@@ -23,6 +23,8 @@ import static java.util.stream.Collectors.toList;
 
 @Service("coursesService")
 public class CoursesService {
+
+    private static final MaxRatingData CURRENT_MAX_RATING = new MaxRatingData(5);// TODO: 30.12.2018 Move to own service
     private final Logger logger = LoggerFactory.getLogger(CoursesService.class);
     private final CoursesRepository coursesRepository;
     private final CourseSectionsRepository courseSectionsRepository;
@@ -40,9 +42,8 @@ public class CoursesService {
     }
 
     MaxRatingData getCurrentMaxRating() {
-        MaxRatingData maxRatingData = new MaxRatingData(5);
-        logger.info(String.format("Get max rating %s.", maxRatingData));
-        return maxRatingData;
+        logger.info(String.format("Get max rating %s.", CURRENT_MAX_RATING));
+        return CURRENT_MAX_RATING;
     }
 
     List<PreviewData> getPreviewsFilteredBy(String query) {
