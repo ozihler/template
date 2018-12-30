@@ -17,8 +17,8 @@ public class CourseSectionData {
         this.sectionMarkdown = sectionMarkdown;
     }
 
-    public static CourseSectionData createFrom(CourseSection courseSection) {
-        return new CourseSectionData(courseSection.getId(), courseSection.getSectionTitle(), courseSection.getSectionTitle());
+    static CourseSectionData createFrom(CourseSection courseSection) {
+        return new CourseSectionData(courseSection.getId(), courseSection.getSectionTitle(), courseSection.getSectionMarkdown());
     }
 
     public long getId() {

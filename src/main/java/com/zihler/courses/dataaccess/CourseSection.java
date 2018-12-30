@@ -10,9 +10,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "course_section")
+@TableGenerator(name = "course_section_table_generator")
 public class CourseSection {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "course_section_table_generator")
     private Long id;
 
     private String sectionTitle;

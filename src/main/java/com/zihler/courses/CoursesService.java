@@ -15,10 +15,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -100,7 +97,7 @@ public class CoursesService {
         return courseSectionsData
                 .stream()
                 .map(courseSectionData -> CourseSection.from(savedCourse, courseSectionData))
-                .map(courseSection -> courseSectionsRepository.save(courseSection))
+                .map(courseSectionsRepository::save)
                 .collect(toList());
     }
 
@@ -115,14 +112,53 @@ public class CoursesService {
 
     private List<CourseSection> updateCourseSections(long id, Course updatedCourse, List<CourseSectionData> courseSectionsData) {
         if (CollectionUtils.isEmpty(courseSectionsData)) {
-            return Collections.EMPTY_LIST;
+            return new ArrayList<>();
         }
         List<CourseSection> courseSections = this.courseSectionsRepository.findByCourseId(id);
         if (thereExistNewCourseSections(courseSectionsData, courseSections)) {
-            return saveCourseSections(updatedCourse, courseSectionsData);
+            List<CourseSectionData> newCourseSectionData = findNewCourseSectionData(courseSectionsData, courseSections);
+            saveCourseSections(updatedCourse, newCourseSectionData);
         }
 
-        return updateCourseSections(courseSectionsData, courseSections);
+        if (courseSectionsWereDeleted(courseSectionsData, courseSections)) {
+            List<CourseSection> courseSectionsToDelete = findDeletedCourseSectionData(courseSectionsData, courseSections);
+            deleteCourseSections(courseSectionsToDelete);
+        }
+        //  TODO: 30.12.2018 Something fishy here... not working as it should. And: have a global ExceptionHandler!
+        courseSections = this.courseSectionsRepository.findByCourseId(id);
+        List<CourseSection> updatedCourseSections = updateCourseSections(courseSectionsData, courseSections);
+        updatedCourseSections.sort(Comparator.comparing(CourseSection::getId));
+        return updatedCourseSections;
+    }
+
+    private void deleteCourseSections(List<CourseSection> courseSectionsToDelete) {
+        this.courseSectionsRepository.deleteAll(courseSectionsToDelete);
+    }
+
+    private List<CourseSection> findDeletedCourseSectionData(List<CourseSectionData> courseSectionsData, List<CourseSection> courseSections) {
+        return courseSections.stream()
+                .filter(courseSection -> !containedIn(courseSection, courseSectionsData))
+                .collect(toList());
+    }
+
+    private boolean containedIn(CourseSection courseSection, List<CourseSectionData> courseSectionsData) {
+        return courseSectionsData.stream()
+                .anyMatch(courseSectionData -> courseSectionData.getId() == courseSection.getId());
+    }
+
+    private boolean courseSectionsWereDeleted(List<CourseSectionData> courseSectionsData, List<CourseSection> courseSections) {
+        return courseSectionsData.size() < courseSections.size();
+    }
+
+    private List<CourseSectionData> findNewCourseSectionData(List<CourseSectionData> courseSectionsData, List<CourseSection> courseSections) {
+        return courseSectionsData.stream()
+                .filter(courseSectionData -> !containedIn(courseSections, courseSectionData))
+                .collect(toList());
+    }
+
+    private boolean containedIn(List<CourseSection> courseSections, CourseSectionData courseSectionData) {
+        return courseSections.stream()
+                .anyMatch(courseSection -> courseSection.getId().equals(courseSectionData.getId()));
     }
 
     private boolean thereExistNewCourseSections(List<CourseSectionData> courseSectionsData, List<CourseSection> courseSections) {
@@ -133,14 +169,14 @@ public class CoursesService {
         return courseSections
                 .stream()
                 .map(courseSection -> courseSection.updateCourseSection(courseSectionsData))
-                .map(courseSection -> this.courseSectionsRepository.save(courseSection))
+                .map(this.courseSectionsRepository::save)
                 .collect(toList());
     }
 
     private Course updateCourse(long id, CourseData courseData) {
         return this.coursesRepository.findById(id)
                 .map(course -> course.updateCourse(courseData))
-                .map(course -> coursesRepository.save(course))
+                .map(coursesRepository::save)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
     }
 

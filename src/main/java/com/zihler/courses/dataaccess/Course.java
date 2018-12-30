@@ -6,9 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "course")
+@TableGenerator(name = "course_table_generator")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "course_table_generator")
     private Long id;
 
     private String title;
