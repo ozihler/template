@@ -1,0 +1,11 @@
+<button (click)="showEditCourseForm()">zeigen</button>
+<button (click)="hideEditCourseForm()">verstecken</button>
+<div *ngIf="shouldShowEditCourseForm">
+  <app-course-form [course]="course" (submitEvent)="update($event)"></app-course-form>
+</div>
+
+<app-course-section [isAddButton]="true" (courseSectionEvent)="addCourseSection($event)"></app-course-section>
+
+<br/>
+<br/>
+<app-course-section-overview-table [course]="course"></app-course-section-overview-table>

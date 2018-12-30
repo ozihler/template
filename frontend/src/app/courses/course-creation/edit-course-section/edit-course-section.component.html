@@ -1,0 +1,7 @@
+<div *ngIf="courseSectionToEdit">
+  <app-course-section
+    (courseSectionEvent)="update($event)"
+    [courseSection]="courseSectionToEdit"
+    [isAddButton]="false">
+  </app-course-section>
+</div>

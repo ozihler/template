@@ -1,0 +1,19 @@
+<form (ngSubmit)="submit()" [formGroup]="courseForm">
+  <label>
+    Titel des Kurses:
+    <input formControlName="title"
+           required
+           type="text"/>
+  </label>
+  <br/>
+  <label>
+    Beschreibung des Kurses:
+    <input formControlName="description"
+           required
+           type="text"/>
+  </label>
+  <br/>
+  <button [disabled]="!courseForm.valid"
+          type="submit">Neuen Kurs erstellen
+  </button>
+</form>

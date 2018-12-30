@@ -8,29 +8,35 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HomeComponent} from './home/home.component';
-import {CoursesComponent} from './courses/courses.component';
-import {CourseDetailsComponent} from './course-details/course-details.component';
-import {CoursePreviewComponent} from './course-preview/course-preview.component';
-import {StarRatingComponent} from './star-rating/star-rating.component';
-import {FilterCoursesInputComponent} from './filter-courses-input/filter-courses-input.component';
-import {AddCourseComponent} from './add-course/add-course.component';
+import {CoursesOverviewComponent} from './courses/course-presentation/courses-overview/courses-overview.component';
+import {CourseDetailsComponent} from './courses/course-presentation/course-details/course-details.component';
+import {CoursePreviewComponent} from './courses/course-presentation/course-preview/course-preview.component';
+import {StarRatingComponent} from './courses/course-presentation/star-rating/star-rating.component';
+import {FilterCoursesInputComponent} from './courses/course-presentation/courses-overview/filter-courses-input/filter-courses-input.component';
+import {AddCourseComponent} from './courses/course-creation/add-course/add-course.component';
 import {LMarkdownEditorModule} from "ngx-markdown-editor";
 import {MarkdownModule} from "ngx-markdown";
-import {EditCourseSectionComponent} from './edit-course-section/edit-course-section.component';
-import {EditCourseComponent} from "./edit-course/edit-course.component";
+import {EditCourseSectionComponent} from './courses/course-creation/edit-course-section/edit-course-section.component';
+import {EditCourseComponent} from "./courses/course-creation/edit-course/edit-course.component";
+import {CourseSectionOverviewTableComponent} from './courses/course-creation/edit-course/course-section-overview-table/course-section-overview-table.component';
+import {CourseFormComponent} from './courses/course-creation/course-form/course-form.component';
+import {CourseSectionComponent} from './courses/course-creation/edit-course/course-section/course-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CoursesComponent,
+    CoursesOverviewComponent,
     CourseDetailsComponent,
     CoursePreviewComponent,
     StarRatingComponent,
     FilterCoursesInputComponent,
     AddCourseComponent,
     EditCourseComponent,
-    EditCourseSectionComponent
+    EditCourseSectionComponent,
+    CourseSectionOverviewTableComponent,
+    CourseFormComponent,
+    CourseSectionComponent
   ],
   imports: [
     BrowserModule,
