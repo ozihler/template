@@ -22,11 +22,6 @@ public class CoursesController {
         this.coursesService = coursesService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getCourses() {
-        return "Hello";
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public CourseData getCourse(@PathVariable("id") long id) {
         return coursesService.getCourse(id);
