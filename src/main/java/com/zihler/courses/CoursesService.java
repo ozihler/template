@@ -15,7 +15,9 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
@@ -24,8 +26,6 @@ public class CoursesService {
     private final Logger logger = LoggerFactory.getLogger(CoursesService.class);
     private final CoursesRepository coursesRepository;
     private final CourseSectionsRepository courseSectionsRepository;
-
-    private Map<Long, CourseData> courses = new HashMap<>();
 
     @Autowired
     public CoursesService(CoursesRepository coursesRepository, CourseSectionsRepository courseSectionsRepository) {
