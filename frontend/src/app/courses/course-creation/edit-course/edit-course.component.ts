@@ -50,10 +50,7 @@ export class EditCourseComponent implements OnInit {
 
 
   showEditCourseForm(): void {
-    this.shouldShowEditCourseForm = true;
+    this.shouldShowEditCourseForm = this.shouldShowEditCourseForm ? false : true;
   }
 
-  hideEditCourseForm(): void {
-    this.shouldShowEditCourseForm = false;
-  }
 }

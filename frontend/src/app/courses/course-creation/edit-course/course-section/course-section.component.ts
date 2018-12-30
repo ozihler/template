@@ -33,9 +33,7 @@ export class CourseSectionComponent implements OnInit {
     }
   }
 
-  addCourseSection() {
-    this.courseSection.id = Math.floor(Math.random() * 100000);
-
+  public addCourseSection(): void {
     this.courseSectionEvent.emit(this.courseSection);
   }
 

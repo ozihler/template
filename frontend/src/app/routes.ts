@@ -4,7 +4,7 @@ import {HomeComponent} from "./home/home.component";
 import {CourseDetailsComponent} from "./courses/course-presentation/course-details/course-details.component";
 import {AddCourseComponent} from "./courses/course-creation/add-course/add-course.component";
 import {EditCourseComponent} from "./courses/course-creation/edit-course/edit-course.component";
-import {EditCourseSectionComponent} from "./courses/course-creation/edit-course-section/edit-course-section.component";
+import {EditCourseSectionComponent} from "./courses/course-creation/edit-course/edit-course-section/edit-course-section.component";
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},

@@ -16,7 +16,7 @@ import {FilterCoursesInputComponent} from './courses/course-presentation/courses
 import {AddCourseComponent} from './courses/course-creation/add-course/add-course.component';
 import {LMarkdownEditorModule} from "ngx-markdown-editor";
 import {MarkdownModule} from "ngx-markdown";
-import {EditCourseSectionComponent} from './courses/course-creation/edit-course-section/edit-course-section.component';
+import {EditCourseSectionComponent} from './courses/course-creation/edit-course/edit-course-section/edit-course-section.component';
 import {EditCourseComponent} from "./courses/course-creation/edit-course/edit-course.component";
 import {CourseSectionOverviewTableComponent} from './courses/course-creation/edit-course/course-section-overview-table/course-section-overview-table.component';
 import {CourseFormComponent} from './courses/course-creation/course-form/course-form.component';
