@@ -13,5 +13,6 @@
 
 <br/>
 <app-course-section-overview-table
-  [courseSections]="courseSections">
+  [courseSections]="courseSections"
+  (deleteCourseSectionEvent)="deleteCourseSection($event)">
 </app-course-section-overview-table>

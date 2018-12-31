@@ -63,4 +63,20 @@ export class EditCourseComponent implements OnInit {
     this.shouldShowEditCourseForm = !this.shouldShowEditCourseForm;
   }
 
+  deleteCourseSection(courseSection: CourseSection): void {
+    this.courseSectionService.delete(courseSection)
+      .subscribe((courseSection) => {
+        this.courseSections = this.copyCourseSectionsWithout(courseSection);
+      });
+  }
+
+  private copyCourseSectionsWithout(courseSectionToDelete: CourseSection): CourseSection[] {
+    let courseSectionsCopy: CourseSection[] = [];
+    for (const courseSection of this.courseSections) {
+      if (courseSection.id !== courseSectionToDelete.id) {
+        courseSectionsCopy.push(courseSection);
+      }
+    }
+    return courseSectionsCopy;
+  }
 }
