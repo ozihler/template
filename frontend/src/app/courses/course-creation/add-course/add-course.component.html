@@ -1,4 +1,4 @@
 <div>
   <span *ngIf="error">{{error}}</span>
-  <app-course-form (submitEvent)="submitCourse($event)"></app-course-form>
+  <app-course-form (submitEvent)="submitCourse($event)" [buttonText]="'Kurs erstellen'"></app-course-form>
 </div>

@@ -1,6 +1,7 @@
 <button (click)="showEditCourseForm()">zeigen/verstecken</button>
 <div *ngIf="shouldShowEditCourseForm">
   <app-course-form
+    [buttonText]="'Kursdaten aktualisieren'"
     [course]="course"
     (submitEvent)="update($event)">
   </app-course-form>
@@ -17,5 +18,5 @@
   (deleteCourseSectionEvent)="deleteCourseSection($event)">
 </app-course-section-overview-table>
 <a [routerLink]="['/created-courses-overview']"
-   class="fa fa-trash btn btn-primary btn-lg">Kurs bearbeiten schliessen</a>
+   class="fa btn btn-primary btn-lg">Kurs bearbeiten schliessen</a>
 

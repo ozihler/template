@@ -105,4 +105,13 @@ public class CoursesService {
                 .map(CourseDto::createFrom)
                 .collect(toList());
     }
+
+    public CourseDto deleteCourse(long id) {
+        Course courseToDelete = coursesRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+
+        coursesRepository.delete(courseToDelete);
+
+        return CourseDto.createFrom(courseToDelete);
+    }
 }

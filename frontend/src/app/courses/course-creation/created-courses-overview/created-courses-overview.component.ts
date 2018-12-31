@@ -24,4 +24,22 @@ export class CreatedCoursesOverviewComponent implements OnInit {
       });
   }
 
+  deleteCourse(id: number): void {
+    this.coursesService.deleteCourse(id)
+      .subscribe(course => {
+        this.courses = this.copyCoursesWithout(course);
+      }, error => {
+        this.error = JSON.stringify(error);
+      });
+  }
+
+  private copyCoursesWithout(course: Course) {
+    let copy: Course[] = [];
+    for (const c of this.courses) {
+      if (c.id !== course.id) {
+        copy.push(c);
+      }
+    }
+    return copy;
+  }
 }

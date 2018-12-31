@@ -18,11 +18,13 @@
     </td>
     <td>
       <a
+        (click)="deleteCourse(course.id)"
         [routerLink]=""
         class="fa fa-trash btn btn-primary btn-lg"></a>
     </td>
     <td>
-      <a [routerLink]=""
+      <a
+        [routerLink]="['/edit-course', course.id]"
          class="fa fa-edit btn btn-primary btn-lg"></a>
     </td>
   </tr>

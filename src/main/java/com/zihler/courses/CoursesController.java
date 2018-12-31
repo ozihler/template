@@ -24,6 +24,12 @@ public class CoursesController {
     public List<CourseDto> getAllCourses() {
         return coursesService.getAllCourses();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public CourseDto deleteCourse(@PathVariable("id") long id) {
+        return coursesService.deleteCourse(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public CourseDto getCourse(@PathVariable("id") long id) {
         return coursesService.getCourse(id);
