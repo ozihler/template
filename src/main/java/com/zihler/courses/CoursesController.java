@@ -30,22 +30,22 @@ public class CoursesController {
         return coursesService.deleteCourse(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @GetMapping(value = "/{id}")
     public CourseDto getCourse(@PathVariable("id") long id) {
         return coursesService.getCourse(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public CourseDto postCourse(@RequestBody CourseDto courseDto) {
-        return this.coursesService.createFrom(courseDto);
+        return this.coursesService.createCourse(courseDto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    @PutMapping(value = "/{id}")
     public CourseDto putCourse(@RequestBody CourseDto courseDto, @PathVariable("id") long id) {
         return this.coursesService.update(id, courseDto);
     }
 
-    @RequestMapping(value = "/previews", method = RequestMethod.GET)
+    @GetMapping(value = "/previews")
     public List<PreviewDto> getPreviews(@RequestParam(value = "q", required = false) String query) {
         if (StringUtils.isBlank(query)) {
             return coursesService.getPreviews();
@@ -53,7 +53,7 @@ public class CoursesController {
         return coursesService.getPreviewsFilteredBy(query);
     }
 
-    @RequestMapping(value = "/currentMaxRating", method = RequestMethod.GET)
+    @GetMapping(value = "/currentMaxRating")
     public MaxRatingDto getCurrentMaxRating() {
         return coursesService.getCurrentMaxRating();
     }

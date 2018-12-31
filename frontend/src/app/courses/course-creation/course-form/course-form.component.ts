@@ -12,7 +12,8 @@ export class CourseFormComponent implements OnInit {
   courseForm: FormGroup;
   @Input()
   course: Course;
-  @Input() buttonText: string;
+  @Input()
+  buttonText: string;
   @Output()
   private submitEvent: EventEmitter<Course> = new EventEmitter();
 

@@ -29,35 +29,35 @@ public class CoursesService {
         this.coursesRepository = coursesRepository;
     }
 
-    List<PreviewDto> getPreviews() {
+    List<PreviewDto> getPreviews() {// TODO: 30.12.2018 Move to own service
         List<PreviewDto> previews = PreviewDto.createPreviews(this.coursesRepository.findAll());
         logger.info(String.format("Get previews %s.", previews));
         return previews;
     }
 
-    MaxRatingDto getCurrentMaxRating() {
+    MaxRatingDto getCurrentMaxRating() {// TODO: 30.12.2018 Move to own service
         logger.info(String.format("Get max rating %s.", CURRENT_MAX_RATING));
         return CURRENT_MAX_RATING;
     }
 
-    List<PreviewDto> getPreviewsFilteredBy(String query) {
+    List<PreviewDto> getPreviewsFilteredBy(String query) {// TODO: 30.12.2018 Move to own service
         List<PreviewDto> filteredPreviews = filterPreviewsUsing(query);
         logger.info(String.format("Get filtered previews for query %s: %s.", query, filteredPreviews));
         return filteredPreviews;
     }
 
-    private List<PreviewDto> filterPreviewsUsing(String query) {
+    private List<PreviewDto> filterPreviewsUsing(String query) {// TODO: 30.12.2018 Move to own service
         return PreviewDto.createPreviews(this.coursesRepository.findAll())
                 .stream()
                 .filter(previewDto -> filterTexts(query, previewDto))
                 .collect(toList());
     }
 
-    private boolean filterTexts(String query, PreviewDto previewDto) {
+    private boolean filterTexts(String query, PreviewDto previewDto) {// TODO: 30.12.2018 Move to own service
         return filter(previewDto.getTitle(), query) || filter(previewDto.getDescription(), query);
     }
 
-    private boolean filter(String description, String query) {
+    private boolean filter(String description, String query) {// TODO: 30.12.2018 Move to own service
         return description.toLowerCase().contains(query.toLowerCase());
     }
 
@@ -73,30 +73,23 @@ public class CoursesService {
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
     }
 
-    CourseDto createFrom(CourseDto courseDto) {
-        Course savedCourse = saveCourse(courseDto);
+    CourseDto createCourse(CourseDto courseDto) {
+        Course course = Course.from(courseDto);
+        Course savedCourse = this.coursesRepository.save(course);
         CourseDto savedCourseDto = CourseDto.createFrom(savedCourse);
         logger.info(String.format("Saved course: %s", savedCourseDto));
         return savedCourseDto;
     }
 
     CourseDto update(long id, CourseDto courseDto) {
-        Course updatedCourse = updateCourse(id, courseDto);
-        CourseDto updatedCourseDto = CourseDto.createFrom(updatedCourse);
-        logger.info(String.format("Updated course: %s", updatedCourseDto));
-        return updatedCourseDto;
-    }
-
-    private Course saveCourse(CourseDto courseDto) {
-        Course course = Course.from(courseDto);
-        return this.coursesRepository.save(course);
-    }
-
-    private Course updateCourse(long id, CourseDto courseDto) {
-        return this.coursesRepository.findById(id)
+        CourseDto updatedCourseDto = this.coursesRepository.findById(id)
                 .map(course -> course.updateCourse(courseDto))
                 .map(coursesRepository::save)
+                .map(CourseDto::createFrom)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+
+        logger.info(String.format("Updated course: %s", updatedCourseDto));
+        return updatedCourseDto;
     }
 
     public List<CourseDto> getAllCourses() {
