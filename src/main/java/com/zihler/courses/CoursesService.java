@@ -21,7 +21,7 @@ import static java.util.stream.Collectors.toList;
 public class CoursesService {
 
     private static final MaxRatingDto CURRENT_MAX_RATING = new MaxRatingDto(5);// TODO: 30.12.2018 Move to own service
-    private final Logger logger = LoggerFactory.getLogger(CoursesService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CoursesService.class);
     private final CoursesRepository coursesRepository;
 
     @Autowired
