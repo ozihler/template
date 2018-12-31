@@ -31,12 +31,12 @@ public class CourseSectionsService {
                 .map(course -> CourseSection.from(course, courseSectionDto))
                 .map(courseSectionsRepository::save)
                 .map(CourseSectionDto::createFrom)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", courseSectionDto.getCourseId())));
+                .orElseThrow(() -> courseNotFoundException(courseSectionDto.getCourseId()));
     }
 
     public CourseSectionDto deleteCourseSection(long id) {
         CourseSection courseSection = courseSectionsRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course section with id %d", id)));
+                .orElseThrow(() -> courseSectionNotFoundException(id));
 
         courseSectionsRepository.delete(courseSection);
 
@@ -53,7 +53,7 @@ public class CourseSectionsService {
     public CourseSectionDto getCourseSection(long id) {
         return courseSectionsRepository.findById(id)
                 .map(CourseSectionDto::createFrom)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course section with id %d", id)));
+                .orElseThrow(() -> courseSectionNotFoundException(id));
     }
 
     public CourseSectionDto updateCourseSection(long id, CourseSectionDto courseSectionDto) {
@@ -61,6 +61,14 @@ public class CourseSectionsService {
                 .map(courseSection -> courseSection.updateCourseSection(courseSectionDto))
                 .map(courseSectionsRepository::save)
                 .map(CourseSectionDto::createFrom)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course section with id %d", id)));
+                .orElseThrow(() -> courseSectionNotFoundException(id));
+    }
+
+    private ResourceNotFoundException courseSectionNotFoundException(long id) {
+        return new ResourceNotFoundException(String.format("Could not find course section with id %d", id));
+    }
+
+    private ResourceNotFoundException courseNotFoundException(long courseId) {
+        return new ResourceNotFoundException(String.format("Could not find course with id %d", courseId));
     }
 }

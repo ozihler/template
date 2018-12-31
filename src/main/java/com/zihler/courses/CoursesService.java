@@ -70,7 +70,7 @@ public class CoursesService {
     private CourseDto collectCourseDataFor(long id) {
         return coursesRepository.findById(id)
                 .map(CourseDto::createFrom)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+                .orElseThrow(() -> throwCourseNotFoundException(id));
     }
 
     CourseDto createCourse(CourseDto courseDto) {
@@ -86,7 +86,7 @@ public class CoursesService {
                 .map(course -> course.updateCourse(courseDto))
                 .map(coursesRepository::save)
                 .map(CourseDto::createFrom)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+                .orElseThrow(() -> throwCourseNotFoundException(id));
 
         logger.info(String.format("Updated course: %s", updatedCourseDto));
         return updatedCourseDto;
@@ -101,10 +101,14 @@ public class CoursesService {
 
     public CourseDto deleteCourse(long id) {
         Course courseToDelete = coursesRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
+                .orElseThrow(() -> throwCourseNotFoundException(id));
 
         coursesRepository.delete(courseToDelete);
 
         return CourseDto.createFrom(courseToDelete);
+    }
+
+    private ResourceNotFoundException throwCourseNotFoundException(long id) {
+        return new ResourceNotFoundException(String.format("Could not find course with id %d", id));
     }
 }
