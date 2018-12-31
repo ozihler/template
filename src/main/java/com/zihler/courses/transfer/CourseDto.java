@@ -3,7 +3,7 @@ package com.zihler.courses.transfer;
 import com.zihler.courses.dataaccess.Course;
 
 public class CourseDto {
-    private long id;
+    private Long id;
     private String title;
     private String description;
     private String thumbnailUrl;
@@ -24,7 +24,7 @@ public class CourseDto {
         return new CourseDto(course.getId(), course.getTitle(), course.getDescription(), course.getThumbnailUrl(), course.getRating());
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

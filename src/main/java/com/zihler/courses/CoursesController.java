@@ -20,6 +20,10 @@ public class CoursesController {
         this.coursesService = coursesService;
     }
 
+    @GetMapping
+    public List<CourseDto> getAllCourses() {
+        return coursesService.getAllCourses();
+    }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public CourseDto getCourse(@PathVariable("id") long id) {
         return coursesService.getCourse(id);

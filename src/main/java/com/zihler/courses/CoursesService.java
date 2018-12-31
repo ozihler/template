@@ -99,4 +99,10 @@ public class CoursesService {
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find course with id %d", id)));
     }
 
+    public List<CourseDto> getAllCourses() {
+        return coursesRepository.findAllByOrderByIdAsc()
+                .stream()
+                .map(CourseDto::createFrom)
+                .collect(toList());
+    }
 }

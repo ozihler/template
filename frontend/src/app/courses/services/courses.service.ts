@@ -37,4 +37,8 @@ export class CoursesService {
   public putCourse(course: Course): Observable<Course> {
     return this.httpClient.put<Course>(`${this.baseUrl}/${course.id}`, course);
   }
+
+  public getAllCourses(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(`${this.baseUrl}`);
+  }
 }

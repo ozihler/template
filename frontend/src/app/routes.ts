@@ -5,9 +5,11 @@ import {CourseDetailsComponent} from "./courses/course-presentation/course-detai
 import {AddCourseComponent} from "./courses/course-creation/add-course/add-course.component";
 import {EditCourseComponent} from "./courses/course-creation/edit-course/edit-course.component";
 import {EditCourseSectionComponent} from "./courses/course-creation/edit-course/edit-course-section/edit-course-section.component";
+import {CreatedCoursesOverviewComponent} from "./courses/course-creation/created-courses-overview/created-courses-overview.component";
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'created-courses-overview', component: CreatedCoursesOverviewComponent},
   {path: 'add-course', component: AddCourseComponent},
   {path: 'courses', component: CoursesOverviewComponent},
   {path: 'course/:id', component: CourseDetailsComponent},
