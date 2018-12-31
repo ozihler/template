@@ -2,21 +2,17 @@ package com.zihler.courses.transfer;
 
 import com.zihler.courses.dataaccess.Course;
 
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-
-public class PreviewData {
+public class CourseDto {
     private long id;
     private String title;
     private String description;
     private String thumbnailUrl;
     private int rating;
 
-    public PreviewData() {
+    public CourseDto() {
     }
 
-    private PreviewData(long id, String title, String description, String thumbnailUrl, int rating) {
+    private CourseDto(long id, String title, String description, String thumbnailUrl, int rating) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -24,21 +20,8 @@ public class PreviewData {
         this.rating = rating;
     }
 
-    public static PreviewData createPreviewFrom(Course course) {
-        return new PreviewData(
-                course.getId(),
-                course.getTitle(),
-                course.getDescription(),
-                course.getThumbnailUrl(),
-                course.getRating()
-        );
-    }
-
-    public static List<PreviewData> createPreviews(List<Course> courses) {
-        return courses.stream()
-                .map(PreviewData::createPreviewFrom)
-                .collect(toList());
-
+    public static CourseDto createFrom(Course course) {
+        return new CourseDto(course.getId(), course.getTitle(), course.getDescription(), course.getThumbnailUrl(), course.getRating());
     }
 
     public long getId() {
@@ -63,7 +46,7 @@ public class PreviewData {
 
     @Override
     public String toString() {
-        return "PreviewData{" +
+        return "CourseData{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

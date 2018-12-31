@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {CoursesService} from "../../courses.service";
+import {CoursesService} from "../../services/courses.service";
 import {ActivatedRoute} from "@angular/router";
 import {Course} from "../../entities/course";
 import {CourseSection} from "../../entities/course-section";
+import {CourseSectionService} from "../../services/course-section.service";
 
 @Component({
   selector: 'app-add-course-pages',
@@ -13,8 +14,9 @@ export class EditCourseComponent implements OnInit {
   private error: string;
   course: Course;
   shouldShowEditCourseForm: boolean;
+  private courseSections: CourseSection[];
 
-  constructor(private route: ActivatedRoute, private courseService: CoursesService) {
+  constructor(private route: ActivatedRoute, private courseService: CoursesService, private courseSectionService: CourseSectionService) {
   }
 
   ngOnInit() {
@@ -22,18 +24,26 @@ export class EditCourseComponent implements OnInit {
       this.courseService.getCourse(params['id'])
         .subscribe(course => {
           this.course = course;
+          this.courseSectionService.getAllCourseSectionsForCourse(course.id)
+            .subscribe(courseSections => {
+              this.courseSections = courseSections;
+            }, error => {
+              this.handleError(error);
+            });
         }, error => {
           this.handleError(error);
         });
     });
   }
 
-  addCourseSection(courseSection: CourseSection) {
-    this.course.courseSections.push(courseSection);
-
-    this.update(this.course);
+  public addCourseSection(courseSection: CourseSection) {
+    this.courseSectionService.createCourseSection(courseSection)
+      .subscribe(courseSection => {
+        this.courseSections.push(courseSection);
+      }, error => {
+        this.handleError(error)
+      });
   }
-
 
   private handleError(error) {
     this.error = JSON.stringify(error);
@@ -50,7 +60,7 @@ export class EditCourseComponent implements OnInit {
 
 
   showEditCourseForm(): void {
-    this.shouldShowEditCourseForm = this.shouldShowEditCourseForm ? false : true;
+    this.shouldShowEditCourseForm = !this.shouldShowEditCourseForm;
   }
 
 }

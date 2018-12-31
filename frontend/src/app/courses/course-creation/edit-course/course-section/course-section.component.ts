@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CourseSection} from "../../../entities/course-section";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-course-section',
@@ -9,6 +10,8 @@ import {CourseSection} from "../../../entities/course-section";
 export class CourseSectionComponent implements OnInit {
 
   @Input()
+  courseId: number;
+  @Input()
   courseSection: CourseSection;
   @Input()
   isAddButton: boolean = true;
@@ -17,12 +20,15 @@ export class CourseSectionComponent implements OnInit {
 
   buttonText: string;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     if (!this.courseSection) {
-      this.courseSection = new CourseSection()
+      this.courseSection = new CourseSection();
+      this.route.params.subscribe(params => {
+        this.courseSection.courseId = parseInt(params['id']);
+      })
     }
 
     this.buttonText = 'Kurselement';

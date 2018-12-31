@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CourseSection} from "../../../entities/course-section";
-import {Course} from "../../../entities/course";
-import {CoursesService} from "../../../courses.service";
+import {CourseSectionService} from "../../../services/course-section.service";
 
 @Component({
   selector: 'app-course-section-overview-table',
@@ -10,35 +9,29 @@ import {CoursesService} from "../../../courses.service";
 })
 export class CourseSectionOverviewTableComponent implements OnInit {
 
-  @Input() course: Course;
+  @Input() courseSections: CourseSection[];
 
-  constructor(private courseService: CoursesService) {
+  constructor(private courseSectionService: CourseSectionService) {
   }
 
   ngOnInit() {
+
   }
 
   deleteCourseSection(courseSection: CourseSection): void {
-    this.course.courseSections = this.copyCourseSectionsWithout(courseSection);
-
-    this.update(this.course);
+    this.courseSectionService.delete(courseSection)
+      .subscribe((courseSection) => {
+        this.courseSections = this.copyCourseSectionsWithout(courseSection);
+      });
   }
 
   private copyCourseSectionsWithout(courseSectionToDelete: CourseSection): CourseSection[] {
     let courseSectionsCopy: CourseSection[] = [];
-    for (const courseSection of this.course.courseSections) {
+    for (const courseSection of this.courseSections) {
       if (courseSection.id !== courseSectionToDelete.id) {
         courseSectionsCopy.push(courseSection);
       }
     }
     return courseSectionsCopy;
   }
-
-  private update(courseToUpdate: Course): void {
-    this.courseService.putCourse(courseToUpdate)
-      .subscribe(course => {
-        this.course = course;
-      });
-  }
-
 }

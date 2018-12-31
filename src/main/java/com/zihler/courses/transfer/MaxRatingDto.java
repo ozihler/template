@@ -1,9 +1,9 @@
 package com.zihler.courses.transfer;
 
-public class MaxRatingData {
+public class MaxRatingDto {
     private int maxRating;
 
-    public MaxRatingData(int maxRating) {
+    public MaxRatingDto(int maxRating) {
         this.maxRating = maxRating;
     }
 

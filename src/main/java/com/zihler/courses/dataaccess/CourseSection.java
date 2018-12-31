@@ -1,12 +1,10 @@
 package com.zihler.courses.dataaccess;
 
-import com.zihler.courses.transfer.CourseSectionData;
+import com.zihler.courses.transfer.CourseSectionDto;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "course_section")
@@ -24,12 +22,18 @@ public class CourseSection {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Course course;
 
-    public static CourseSection from(Course savedCourse, CourseSectionData courseSectionData) {
+    public static CourseSection from(Course course, CourseSectionDto courseSectionDto) {
         CourseSection courseSection = new CourseSection();
-        courseSection.setSectionTitle(courseSectionData.getSectionTitle());
-        courseSection.setSectionMarkdown(courseSectionData.getSectionMarkdown());
-        courseSection.setCourse(savedCourse);
+        courseSection.setSectionTitle(courseSectionDto.getSectionTitle());
+        courseSection.setSectionMarkdown(courseSectionDto.getSectionMarkdown());
+        courseSection.setCourse(course);
         return courseSection;
+    }
+
+    public CourseSection updateCourseSection(CourseSectionDto courseSectionData) {
+        setSectionTitle(courseSectionData.getSectionTitle());
+        setSectionMarkdown(courseSectionData.getSectionMarkdown());
+        return this;
     }
 
     public Long getId() {
@@ -62,24 +66,5 @@ public class CourseSection {
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    public CourseSection updateCourseSection(List<CourseSectionData> courseSectionData) {
-        CourseSectionData courseSectionDataToUpdate = findCourseSectionDataToUpdate(courseSectionData);
-        setSectionTitle(courseSectionDataToUpdate.getSectionTitle());
-        setSectionMarkdown(courseSectionDataToUpdate.getSectionMarkdown());
-        return this;
-    }
-
-    private CourseSectionData findCourseSectionDataToUpdate(List<CourseSectionData> courseSectionsDataToUpdate) {
-        return courseSectionsDataToUpdate.stream()
-                .filter(courseSectionDataToUpdate -> courseSectionDataToUpdate.getId() == getId())
-                .findFirst()
-                .orElseThrow(() -> courseSectionNotFoundException());
-    }
-
-    private ResourceNotFoundException courseSectionNotFoundException() {
-        return new ResourceNotFoundException(String.format("Could not find course section with id %d for course with id %d",
-                getId(), getCourse().getId()));
     }
 }

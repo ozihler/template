@@ -7,7 +7,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let courseSection of course?.courseSections">
+  <tr *ngFor="let courseSection of courseSections">
     <td width="75%">
       {{courseSection.sectionTitle}}
     </td>
@@ -17,8 +17,7 @@
          class="fa fa-trash btn btn-primary btn-lg"></a>
     </td>
     <td>
-      <a [queryParams]="{courseSectionId:courseSection.id}"
-         [routerLink]="['/edit-course-section', course.id]"
+      <a [routerLink]="['/edit-course-section', courseSection.id]"
          class="fa fa-edit btn btn-primary btn-lg"></a>
     </td>
   </tr>

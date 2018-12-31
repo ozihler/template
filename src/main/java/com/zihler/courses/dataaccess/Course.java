@@ -1,6 +1,6 @@
 package com.zihler.courses.dataaccess;
 
-import com.zihler.courses.transfer.CourseData;
+import com.zihler.courses.transfer.CourseDto;
 
 import javax.persistence.*;
 
@@ -17,10 +17,10 @@ public class Course {
     private String thumbnailUrl;
     private int rating;
 
-    public static Course from(CourseData courseData) {
+    public static Course from(CourseDto courseDto) {
         Course course = new Course();
-        course.setTitle(courseData.getTitle());
-        course.setDescription(courseData.getDescription());
+        course.setTitle(courseDto.getTitle());
+        course.setDescription(courseDto.getDescription());
         course.setThumbnailUrl(course.getThumbnailUrl());
         course.setRating(course.getRating());
         return course;
@@ -66,11 +66,11 @@ public class Course {
         this.rating = rating;
     }
 
-    public Course updateCourse(CourseData courseData) {
-        setTitle(courseData.getTitle());
-        setDescription(courseData.getDescription());
-        setThumbnailUrl(courseData.getThumbnailUrl());
-        setRating(courseData.getRating());
+    public Course updateCourse(CourseDto courseDto) {
+        setTitle(courseDto.getTitle());
+        setDescription(courseDto.getDescription());
+        setThumbnailUrl(courseDto.getThumbnailUrl());
+        setRating(courseDto.getRating());
         return this;
     }
 }

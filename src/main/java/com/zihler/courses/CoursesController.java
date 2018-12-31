@@ -1,15 +1,13 @@
 package com.zihler.courses;
 
-import com.zihler.courses.transfer.CourseData;
-import com.zihler.courses.transfer.MaxRatingData;
-import com.zihler.courses.transfer.PreviewData;
+import com.zihler.courses.transfer.CourseDto;
+import com.zihler.courses.transfer.MaxRatingDto;
+import com.zihler.courses.transfer.PreviewDto;
 import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,30 +21,22 @@ public class CoursesController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public CourseData getCourse(@PathVariable("id") long id) {
+    public CourseDto getCourse(@PathVariable("id") long id) {
         return coursesService.getCourse(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public CourseData postCourse(@RequestBody CourseData courseData) {
-        assureCourseSectionDataIsInitialized(courseData);
-        return this.coursesService.createFrom(courseData);
-    }
-
-    private void assureCourseSectionDataIsInitialized(CourseData courseData) {
-        if (Objects.isNull(courseData.getCourseSections())) {
-            courseData.setCourseSections(new ArrayList<>());
-        }
+    public CourseDto postCourse(@RequestBody CourseDto courseDto) {
+        return this.coursesService.createFrom(courseDto);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-    public CourseData putCourse(@RequestBody CourseData courseData, @PathVariable("id") long id) {
-        assureCourseSectionDataIsInitialized(courseData);
-        return this.coursesService.update(id, courseData);
+    public CourseDto putCourse(@RequestBody CourseDto courseDto, @PathVariable("id") long id) {
+        return this.coursesService.update(id, courseDto);
     }
 
     @RequestMapping(value = "/previews", method = RequestMethod.GET)
-    public List<PreviewData> getPreviews(@RequestParam(value = "q", required = false) String query) {
+    public List<PreviewDto> getPreviews(@RequestParam(value = "q", required = false) String query) {
         if (StringUtils.isBlank(query)) {
             return coursesService.getPreviews();
         }
@@ -54,9 +44,7 @@ public class CoursesController {
     }
 
     @RequestMapping(value = "/currentMaxRating", method = RequestMethod.GET)
-    public MaxRatingData getCurrentMaxRating() {
+    public MaxRatingDto getCurrentMaxRating() {
         return coursesService.getCurrentMaxRating();
     }
-
-
 }

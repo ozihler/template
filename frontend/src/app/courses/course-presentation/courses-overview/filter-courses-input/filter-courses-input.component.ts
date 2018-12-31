@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {CoursesService} from "../../../courses.service";
+import {CoursesService} from "../../../services/courses.service";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 
 @Component({
