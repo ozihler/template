@@ -27,4 +27,7 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
 
+  downloadPdf() {
+    this.courseService.getCourseAsPdf(this.course.id);
+  }
 }

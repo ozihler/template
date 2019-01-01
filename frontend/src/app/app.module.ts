@@ -53,7 +53,8 @@ import {CourseWizardComponent} from './courses/course-presentation/course-wizard
     FormsModule,
     MarkdownModule.forRoot()
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,
+    {provide: "windowObject", useValue: window}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

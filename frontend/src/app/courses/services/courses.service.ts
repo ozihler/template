@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
@@ -11,7 +11,7 @@ export class CoursesService {
 
   private baseUrl = `${environment.baseUrl}courses`;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(@Inject("windowObject") private window: Window, private httpClient: HttpClient) {
   }
 
   public getCoursePreviews(): Observable<Preview[]> {
@@ -44,5 +44,9 @@ export class CoursesService {
 
   public deleteCourse(id: number): Observable<Course> {
     return this.httpClient.delete<Course>(`${this.baseUrl}/${id}`);
+  }
+
+  getCourseAsPdf(id: number): void {
+    this.window.open(`${this.baseUrl}/${id}/pdf`);
   }
 }

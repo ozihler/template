@@ -1,10 +1,14 @@
 package com.zihler.courses;
 
+import com.qkyrie.markdown2pdf.internal.exceptions.ConversionException;
+import com.qkyrie.markdown2pdf.internal.exceptions.Markdown2PdfLogicException;
 import com.zihler.courses.transfer.CourseDto;
 import com.zihler.courses.transfer.MaxRatingDto;
 import com.zihler.courses.transfer.PreviewDto;
 import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,10 +18,12 @@ import java.util.List;
 @RequestMapping(value = "/api/courses", produces = "application/json;charset=UTF-8")
 public class CoursesController {
     private CoursesService coursesService;
+    private CourseSectionsService courseSectionsService;
 
     @Autowired
-    public CoursesController(CoursesService coursesService) {
+    public CoursesController(CoursesService coursesService, CourseSectionsService courseSectionsService) {
         this.coursesService = coursesService;
+        this.courseSectionsService = courseSectionsService;
     }
 
     @GetMapping
@@ -56,5 +62,12 @@ public class CoursesController {
     @GetMapping(value = "/currentMaxRating")
     public MaxRatingDto getCurrentMaxRating() {
         return coursesService.getCurrentMaxRating();
+    }
+
+    @GetMapping(value = "/{id}/pdf")
+    public ResponseEntity<byte[]> getCourseAsPdf(@PathVariable("id") long id) throws ConversionException, Markdown2PdfLogicException {
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(courseSectionsService.getCourseAsPdf(id));
     }
 }

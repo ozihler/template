@@ -1,5 +1,8 @@
 package com.zihler.courses;
 
+import com.qkyrie.markdown2pdf.internal.exceptions.ConversionException;
+import com.qkyrie.markdown2pdf.internal.exceptions.Markdown2PdfLogicException;
+import com.zihler.courses.dataaccess.Course;
 import com.zihler.courses.dataaccess.CourseSection;
 import com.zihler.courses.dataaccess.CourseSectionsRepository;
 import com.zihler.courses.dataaccess.CoursesRepository;
@@ -17,11 +20,13 @@ import java.util.stream.Collectors;
 @Transactional
 public class CourseSectionsService {
 
+    private Course2PdfService course2PdfService;
     private CoursesRepository coursesRepository;
     private CourseSectionsRepository courseSectionsRepository;
 
     @Autowired
-    public CourseSectionsService(CoursesRepository coursesRepository, CourseSectionsRepository courseSectionsRepository) {
+    public CourseSectionsService(Course2PdfService course2PdfService, CoursesRepository coursesRepository, CourseSectionsRepository courseSectionsRepository) {
+        this.course2PdfService = course2PdfService;
         this.coursesRepository = coursesRepository;
         this.courseSectionsRepository = courseSectionsRepository;
     }
@@ -62,6 +67,17 @@ public class CourseSectionsService {
                 .map(courseSectionsRepository::save)
                 .map(CourseSectionDto::createFrom)
                 .orElseThrow(() -> courseSectionNotFoundException(id));
+    }
+
+    public byte[] getCourseAsPdf(long id) throws Markdown2PdfLogicException, ConversionException {
+        Course course = findCourseForCourseId(id);
+        List<CourseSection> courseSections = this.courseSectionsRepository.findByCourseIdOrderByIdAsc(id);
+        return course2PdfService.convertToPdf(course, courseSections);
+    }
+
+    private Course findCourseForCourseId(long id) {
+        return this.coursesRepository.findById(id)
+                .orElseThrow(() -> courseNotFoundException(id));
     }
 
     private ResourceNotFoundException courseSectionNotFoundException(long id) {
