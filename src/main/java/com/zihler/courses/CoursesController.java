@@ -64,7 +64,7 @@ public class CoursesController {
         return coursesService.getCurrentMaxRating();
     }
 
-    @GetMapping(value = "/{id}/pdf")
+    @GetMapping(value = "/{id}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> getCourseAsPdf(@PathVariable("id") long id) throws ConversionException, Markdown2PdfLogicException {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
