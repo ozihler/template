@@ -13,6 +13,16 @@
            type="text"/>
   </label>
   <br/>
+  <label>
+    Url zu einem Bild für den Kurses:
+    <input formControlName="thumbnailUrl"
+           required
+           type="text"
+    />
+  </label>
+  <br/>
+  <img *ngIf="course && course.thumbnailUrl" [src]="course.thumbnailUrl"/>
+
   <button [disabled]="!courseForm.valid"
           type="submit">{{buttonText}}
   </button>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Course} from "../../entities/course";
 
 @Component({
@@ -11,13 +11,14 @@ export class CourseFormComponent implements OnInit {
 
   courseForm: FormGroup;
   @Input()
-  course: Course;
+  course: Course = new Course();
   @Input()
   buttonText: string;
   @Output()
   private submitEvent: EventEmitter<Course> = new EventEmitter();
+  public hasImageError: boolean = false;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -28,19 +29,26 @@ export class CourseFormComponent implements OnInit {
     if (!this.course) {
       this.course = new Course();
     }
-    let value = this.courseForm.value;
-    this.course.title = value.title;
-    this.course.description = value.description;
+
+    this.course.setDataFrom(this.courseForm);
+
     this.submitEvent.emit(this.course);
   }
 
-  private createCourseForm(): FormGroup {
-    let title = this.course ? this.course.title : '';
-    let description = this.course ? this.course.description : '';
 
-    return new FormGroup({
-      title: new FormControl(title),
-      description: new FormControl(description)
+  private createCourseForm(): FormGroup {
+    let title: string = this.course ? this.course.title : '';
+    let description: string = this.course ? this.course.description : '';
+    let thumbnailUrl: string = this.course ? this.course.thumbnailUrl : '';
+
+
+    let formGroup = this.formBuilder.group({
+      title: title,
+      description: description,
+      thumbnailUrl: thumbnailUrl
     });
+
+    return formGroup;
   }
+
 }

@@ -73,7 +73,7 @@ public class CoursesService {
                 .orElseThrow(() -> throwCourseNotFoundException(id));
     }
 
-    CourseDto createCourse(CourseDto courseDto) {
+    CourseDto createCourseFrom(CourseDto courseDto) {
         Course course = Course.from(courseDto);
         Course savedCourse = this.coursesRepository.save(course);
         CourseDto savedCourseDto = CourseDto.createFrom(savedCourse);
@@ -81,7 +81,7 @@ public class CoursesService {
         return savedCourseDto;
     }
 
-    CourseDto update(long id, CourseDto courseDto) {
+    CourseDto updateCourseWith(long id, CourseDto courseDto) {
         CourseDto updatedCourseDto = this.coursesRepository.findById(id)
                 .map(course -> course.updateCourse(courseDto))
                 .map(coursesRepository::save)

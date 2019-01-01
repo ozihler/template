@@ -6,6 +6,7 @@ import {AddCourseComponent} from "./courses/course-creation/add-course/add-cours
 import {EditCourseComponent} from "./courses/course-creation/edit-course/edit-course.component";
 import {EditCourseSectionComponent} from "./courses/course-creation/edit-course/edit-course-section/edit-course-section.component";
 import {CreatedCoursesOverviewComponent} from "./courses/course-creation/created-courses-overview/created-courses-overview.component";
+import {CourseWizardComponent} from "./courses/course-presentation/course-wizard/course-wizard.component";
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -13,6 +14,7 @@ export const routes: Routes = [
   {path: 'add-course', component: AddCourseComponent},
   {path: 'courses', component: CoursesOverviewComponent},
   {path: 'course/:id', component: CourseDetailsComponent},
+  {path: 'course/:id/sections', component: CourseWizardComponent},
   {path: 'edit-course/:id', component: EditCourseComponent},
   {path: 'edit-course-section/:id', component: EditCourseSectionComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}

@@ -5,3 +5,4 @@ interface Preview {
   thumbnailUrl: string;
   rating: number;
 }
+

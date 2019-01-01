@@ -15,6 +15,7 @@ public class CourseSection {
     private Long id;
 
     private String sectionTitle;
+    @Lob
     private String sectionMarkdown;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

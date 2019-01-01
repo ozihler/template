@@ -1,5 +1,6 @@
 <div class="card">
-  <img alt="{{preview.title}}" class="card-img-top" src="assets/images/course_pic.PNG">
+  <img *ngIf="preview.thumbnailUrl" [src]="preview.thumbnailUrl" alt="{{preview.title}}" class="card-img-top"
+       style="max-width: inherit">
   <div class="card-body">
     <h5 class="card-title">{{preview.title}}</h5>
     <p class="card-text">{{preview.description}}</p>

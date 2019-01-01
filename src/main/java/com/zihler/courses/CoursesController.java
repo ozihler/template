@@ -36,13 +36,13 @@ public class CoursesController {
     }
 
     @PostMapping
-    public CourseDto postCourse(@RequestBody CourseDto courseDto) {
-        return this.coursesService.createCourse(courseDto);
+    public CourseDto createCourseFrom(@RequestBody CourseDto courseDto) {
+        return this.coursesService.createCourseFrom(courseDto);
     }
 
     @PutMapping(value = "/{id}")
-    public CourseDto putCourse(@RequestBody CourseDto courseDto, @PathVariable("id") long id) {
-        return this.coursesService.update(id, courseDto);
+    public CourseDto updateCourseWith(@RequestBody CourseDto courseDto, @PathVariable("id") long id) {
+        return this.coursesService.updateCourseWith(id, courseDto);
     }
 
     @GetMapping(value = "/previews")

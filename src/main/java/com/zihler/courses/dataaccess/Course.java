@@ -21,8 +21,8 @@ public class Course {
         Course course = new Course();
         course.setTitle(courseDto.getTitle());
         course.setDescription(courseDto.getDescription());
-        course.setThumbnailUrl(course.getThumbnailUrl());
-        course.setRating(course.getRating());
+        course.setThumbnailUrl(courseDto.getThumbnailUrl());
+        course.setRating(courseDto.getRating());
         return course;
     }
 

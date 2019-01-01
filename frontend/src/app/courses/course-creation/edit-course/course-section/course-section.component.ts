@@ -28,7 +28,7 @@ export class CourseSectionComponent implements OnInit {
       this.courseSection = new CourseSection();
       this.route.params.subscribe(params => {
         this.courseSection.courseId = parseInt(params['id']);
-      })
+      });
     }
 
     this.buttonText = 'Kurselement';
