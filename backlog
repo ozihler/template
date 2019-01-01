@@ -5,3 +5,5 @@
 - Author can associate bundles to projects
 - see todos
 - implement conversion to md -> pdf
+-- create pdf generator for authors to be able to select parts they want to have in the code
+-- provide inclusion of css file

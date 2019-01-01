@@ -4,6 +4,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
+import com.qkyrie.markdown2pdf.internal.writing.Markdown2PdfWriter;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
@@ -26,42 +27,80 @@ public class Course2PdfService {
         PdfWriter writer = PdfWriter.getInstance(document, os);
         document.open();
         XMLWorkerHelper.getInstance()
-                .parseXHtml(writer, document, new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8)));
+                .parseXHtml(writer,
+                        document,
+                        new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8))
+                );
         document.close();
 
         return os.toByteArray();
     }
 
-    public byte[] convertToPdf(Course course, List<CourseSection> courseSections) throws IOException, DocumentException {
-//        ByteCollector pdfBytesCollector = new ByteCollector();
-//
-//        Markdown2PdfConverter.newConverter()
-//                .readFrom(() -> formatForPdf(course, courseSections))
-//                .writeTo(pdfBytesCollector)
-//                .doIt();
-//
-//        return pdfBytesCollector.getBytes();
-        MutableDataSet options = new MutableDataSet();
+    public byte[] convertToPdfSimple(Course course, List<CourseSection> courseSections) {
+        try {
+            ByteCollector pdfBytesCollector = new ByteCollector();
 
-        Parser parser = Parser.builder(options).build();
-        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+            Markdown22PdfConverter.newConverter()
+                    .readFrom(() -> formatForPdf(course, courseSections))
+                    .writeTo(pdfBytesCollector)
+                    .doIt();
 
-        // You can re-use parser and renderer instances
-        Node document = parser.parse(formatForPdf(course, courseSections));
-        String html = renderer.render(document);  // "<p>This is <em>Sparta</em></p>\n"
-
-        return generatePDFFromHTML(html);
+            return pdfBytesCollector.getBytes(); //doesn't produce utf 8... errors
+        } catch (Exception e) {
+            throw new RuntimeException(String.format("Could not parse course with id %s.", course.getId(), e));
+        }
     }
+
+    public byte[] convertToPdf(Course course, List<CourseSection> courseSections) {
+        try {
+            MutableDataSet options = new MutableDataSet();
+
+            Parser parser = Parser.builder(options).build();
+            HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+
+            String markdownInput = formatForPdf(course, courseSections);
+            Node document = parser.parse(markdownInput);
+            String html = renderer.render(document);
+
+            html = "<!DOCTYPE html>\n" +
+                    "<html>\n" +
+                    "<head></head>\n" +
+                    "<body style=\"font-family: Arial, Helvetica, sans-serif; \">\n" +
+                    html + "\n" +
+                    "</body>\n" +
+                    "</html>";
+            return Markdown22PdfConverter.convert(html);
+        } catch (Exception e) {
+            throw new RuntimeException(String.format("Could not parse course with id %s.", course.getId()), e);
+        }
+    }
+
     private String formatForPdf(Course course, List<CourseSection> courseSections) {
-        String formatted = "# " + course.getTitle();
-        formatted += "\n## " + course.getDescription();
+        String formatted = "# " + course.getTitle() + "\n";
+        formatted += "## " + course.getDescription() + "\n";
 
         for (CourseSection courseSection : courseSections) {
-            formatted += "\n# " + courseSection.getSectionTitle();
-            formatted += "\n" + courseSection.getSectionMarkdown();
+            formatted += "# " + courseSection.getSectionTitle() + "\n";
+            formatted += courseSection.getSectionMarkdown() + "\n";
         }
         return formatted;
     }
 
+    private class ByteCollector implements Markdown2PdfWriter {
 
+        private byte[] bytes;
+
+        @Override
+        public void write(byte[] out) {
+            this.bytes = out;
+        }
+
+        public byte[] getBytes() {
+            return bytes;
+        }
+
+        public void setBytes(byte[] bytes) {
+            this.bytes = bytes;
+        }
+    }
 }
