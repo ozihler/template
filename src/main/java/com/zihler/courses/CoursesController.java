@@ -1,7 +1,6 @@
 package com.zihler.courses;
 
-import com.qkyrie.markdown2pdf.internal.exceptions.ConversionException;
-import com.qkyrie.markdown2pdf.internal.exceptions.Markdown2PdfLogicException;
+import com.itextpdf.text.DocumentException;
 import com.zihler.courses.transfer.CourseDto;
 import com.zihler.courses.transfer.MaxRatingDto;
 import com.zihler.courses.transfer.PreviewDto;
@@ -11,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -65,7 +65,7 @@ public class CoursesController {
     }
 
     @GetMapping(value = "/{id}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<byte[]> getCourseAsPdf(@PathVariable("id") long id) throws ConversionException, Markdown2PdfLogicException {
+    public ResponseEntity<byte[]> getCourseAsPdf(@PathVariable("id") long id) throws IOException, DocumentException {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(courseSectionsService.getCourseAsPdf(id));

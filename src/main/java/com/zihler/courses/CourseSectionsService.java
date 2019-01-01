@@ -1,7 +1,6 @@
 package com.zihler.courses;
 
-import com.qkyrie.markdown2pdf.internal.exceptions.ConversionException;
-import com.qkyrie.markdown2pdf.internal.exceptions.Markdown2PdfLogicException;
+import com.itextpdf.text.DocumentException;
 import com.zihler.courses.dataaccess.Course;
 import com.zihler.courses.dataaccess.CourseSection;
 import com.zihler.courses.dataaccess.CourseSectionsRepository;
@@ -12,6 +11,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,11 +69,12 @@ public class CourseSectionsService {
                 .orElseThrow(() -> courseSectionNotFoundException(id));
     }
 
-    public byte[] getCourseAsPdf(long id) throws Markdown2PdfLogicException, ConversionException {
+    public byte[] getCourseAsPdf(long id) throws IOException, DocumentException {
         Course course = findCourseForCourseId(id);
         List<CourseSection> courseSections = this.courseSectionsRepository.findByCourseIdOrderByIdAsc(id);
         return course2PdfService.convertToPdf(course, courseSections);
     }
+
 
     private Course findCourseForCourseId(long id) {
         return this.coursesRepository.findById(id)
