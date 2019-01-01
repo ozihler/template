@@ -4,3 +4,4 @@
 - Author can bundle bundles, courses, and course sections of courses into new bundles
 - Author can associate bundles to projects
 - see todos
+- implement conversion to md -> pdf
