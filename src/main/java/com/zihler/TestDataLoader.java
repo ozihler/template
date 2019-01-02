@@ -22,7 +22,7 @@ public class TestDataLoader implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         Course course = new Course();
         course.setTitle("Clean Code");
         course.setDescription("Clean Code Workshop");

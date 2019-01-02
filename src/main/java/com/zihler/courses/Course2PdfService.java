@@ -47,11 +47,11 @@ public class Course2PdfService {
 
             return pdfBytesCollector.getBytes(); //doesn't produce utf 8... errors
         } catch (Exception e) {
-            throw new RuntimeException(String.format("Could not parse course with id %s.", course.getId(), e));
+            throw new RuntimeException(String.format("Could not parse course with id %s.", course.getId()), e);
         }
     }
 
-    public byte[] convertToPdf(Course course, List<CourseSection> courseSections) {
+    byte[] convertToPdf(Course course, List<CourseSection> courseSections) {
         try {
             MutableDataSet options = new MutableDataSet();
 
@@ -76,14 +76,19 @@ public class Course2PdfService {
     }
 
     private String formatForPdf(Course course, List<CourseSection> courseSections) {
-        String formatted = "# " + course.getTitle() + "\n";
-        formatted += "## " + course.getDescription() + "\n";
+        StringBuilder formatted = new StringBuilder("# " + course.getTitle() + "\n");
+        formatted.append("## ")
+                .append(course.getDescription())
+                .append("\n");
 
         for (CourseSection courseSection : courseSections) {
-            formatted += "# " + courseSection.getSectionTitle() + "\n";
-            formatted += courseSection.getSectionMarkdown() + "\n";
+            formatted.append("# ")
+                    .append(courseSection.getSectionTitle())
+                    .append("\n")
+                    .append(courseSection.getSectionMarkdown())
+                    .append("\n");
         }
-        return formatted;
+        return formatted.toString();
     }
 
     private class ByteCollector implements Markdown2PdfWriter {
@@ -95,7 +100,7 @@ public class Course2PdfService {
             this.bytes = out;
         }
 
-        public byte[] getBytes() {
+        byte[] getBytes() {
             return bytes;
         }
 

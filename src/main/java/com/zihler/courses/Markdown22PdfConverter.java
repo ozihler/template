@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author Quinten De Swaef
  */
-public class Markdown22PdfConverter {
+class Markdown22PdfConverter {
     private Markdown2PdfReader reader;
     private Markdown2PdfWriter writer;
     private Markdown2HtmlConverter markdown2htmlConverter;
@@ -35,11 +35,11 @@ public class Markdown22PdfConverter {
         this.html2PdfConverter = new Html2PdfConverter();
     }
 
-    public static Markdown22PdfConverter newConverter() {
+    static Markdown22PdfConverter newConverter() {
         return new Markdown22PdfConverter();
     }
 
-    public static byte[] convert(String input) throws ConversionException {
+    static byte[] convert(String input) throws ConversionException {
         try {
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(new String(input.getBytes(StandardCharsets.UTF_8)));
@@ -53,23 +53,23 @@ public class Markdown22PdfConverter {
         }
     }
 
-    public Markdown22PdfConverter readFrom(Markdown2PdfReader reader) {
+    Markdown22PdfConverter readFrom(Markdown2PdfReader reader) {
         this.reader = reader;
         return this;
     }
 
-    public Markdown22PdfConverter writeTo(Markdown2PdfWriter writer) {
+    Markdown22PdfConverter writeTo(Markdown2PdfWriter writer) {
         this.writer = writer;
         return this;
     }
 
-    public void doIt() throws ConversionException, Markdown2PdfLogicException {
+    void doIt() throws ConversionException, Markdown2PdfLogicException {
         String cleanedHtmlFile = cleanedHtmlFile();
         byte[] convertedPdfFile = convert(cleanedHtmlFile);
         writer.write(convertedPdfFile);
     }
 
-    public String cleanedHtmlFile() throws Markdown2PdfLogicException, ConversionException {
+    private String cleanedHtmlFile() throws Markdown2PdfLogicException, ConversionException {
         validateLogicBeforeExecution();
         String originalMarkdownFile = reader.read();
         String htmlFile = markdown2htmlConverter.convert(originalMarkdownFile);
