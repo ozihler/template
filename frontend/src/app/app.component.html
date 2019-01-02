@@ -1,4 +1,21 @@
-<h1 class="text-center">Learning App
-  <small *ngIf="!isProd" class="text-danger font-italic">{{name}}</small>
-</h1>
-<router-outlet></router-outlet>
+<div class="container">
+  <h1 class="text-center">Learning App
+    <small *ngIf="!isProd" class="text-danger font-italic">{{name}}</small>
+  </h1>
+</div>
+<div class="container">
+  <ul>
+    <li>
+      <a [routerLink]="['/created-courses-overview']">Erstellte Kurse ansehen</a>
+    </li>
+    <li>
+      <a [routerLink]="['/add-course']">Kurse erstellen</a>
+    </li>
+    <li>
+      <a [routerLink]="['/courses']">Kurse</a>
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

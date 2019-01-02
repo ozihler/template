@@ -7,7 +7,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HomeComponent} from './home/home.component';
 import {CoursesOverviewComponent} from './courses/course-presentation/courses-overview/courses-overview.component';
 import {CourseDetailsComponent} from './courses/course-presentation/course-details/course-details.component';
 import {CoursePreviewComponent} from './courses/course-presentation/course-preview/course-preview.component';
@@ -27,7 +26,6 @@ import {CourseWizardComponent} from './courses/course-presentation/course-wizard
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CoursesOverviewComponent,
     CourseDetailsComponent,
     CoursePreviewComponent,

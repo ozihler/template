@@ -1,6 +1,5 @@
 import {Routes} from "@angular/router";
 import {CoursesOverviewComponent} from "./courses/course-presentation/courses-overview/courses-overview.component";
-import {HomeComponent} from "./home/home.component";
 import {CourseDetailsComponent} from "./courses/course-presentation/course-details/course-details.component";
 import {AddCourseComponent} from "./courses/course-creation/add-course/add-course.component";
 import {EditCourseComponent} from "./courses/course-creation/edit-course/edit-course.component";
@@ -9,7 +8,6 @@ import {CreatedCoursesOverviewComponent} from "./courses/course-creation/created
 import {CourseWizardComponent} from "./courses/course-presentation/course-wizard/course-wizard.component";
 
 export const routes: Routes = [
-  {path: 'home', component: HomeComponent},
   {path: 'created-courses-overview', component: CreatedCoursesOverviewComponent},
   {path: 'add-course', component: AddCourseComponent},
   {path: 'courses', component: CoursesOverviewComponent},
@@ -17,5 +15,5 @@ export const routes: Routes = [
   {path: 'course/:id/sections', component: CourseWizardComponent},
   {path: 'edit-course/:id', component: EditCourseComponent},
   {path: 'edit-course-section/:id', component: EditCourseSectionComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  {path: '', redirectTo: '/courses', pathMatch: 'full'}
 ];

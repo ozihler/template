@@ -1,18 +1,18 @@
 import { QuestionFormPage } from './users/pages/questionform.po';
 import {QuestionFormUser} from "./users/QuestionFormUser";
+import {CourseUser} from "./users/course-user";
 
 
 
-describe('Question page', () => {
-   let questionFormUser: QuestionFormUser;
+describe('Course user', () => {
+   let courseUser: CourseUser;
 
   beforeEach(() => {
-    questionFormUser = new QuestionFormUser();
+    courseUser = new CourseUser();
   });
 
-  it('should display a form to enter a question', () => {
-    questionFormUser.visitsQuestionFormPage();
-    questionFormUser.seesQuestionForm();
+  it('should be able to see a course preview and download the course as pdf', () => {
+    courseUser.searchesForCourse('Clean Code');
 
   });
 });
