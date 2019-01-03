@@ -53,6 +53,7 @@ export class EditCourseComponent implements OnInit {
     this.courseService.putCourse(courseToUpdate)
       .subscribe(course => {
         this.course = course;
+        this.shouldShowEditCourseForm = false;
       }, error => {
         this.handleError(error)
       });

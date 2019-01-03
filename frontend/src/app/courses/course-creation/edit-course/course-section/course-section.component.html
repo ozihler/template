@@ -1,16 +1,16 @@
-<h2>Markdown nutzen, um ein Kurselement zu erstellen</h2>
-<br/>
-<label>
-  Kursteil Titel
-  <input [(ngModel)]="courseSection.sectionTitle"/>
-</label>
+<div class="container"><h2>Markdown nutzen, um ein Kurselement zu erstellen</h2>
+  <br/>
+  <label>
+    Kursteil Titel
+    <input [(ngModel)]="courseSection.sectionTitle"/>
+  </label>
 
-<br/>
-<br/>
-<md-editor name="Content"
-           [(ngModel)]="courseSection.sectionMarkdown"
-           [height]="'500px'"
-           required>
-</md-editor>
-<button (click)="addCourseSection()" class="btn btn-primary">{{buttonText}}</button>
-
+  <br/>
+  <br/>
+  <md-editor name="Content"
+             [(ngModel)]="courseSection.sectionMarkdown"
+             [height]="'500px'"
+             required>
+  </md-editor>
+  <button (click)="addCourseSection()" class="btn btn-primary">{{buttonText}}</button>
+</div>

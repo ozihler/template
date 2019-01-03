@@ -30,11 +30,17 @@ export class CourseFormComponent implements OnInit {
       this.course = new Course();
     }
 
-    this.course.setDataFrom(this.courseForm);
-
+    this.updateDataInCourseFromForm(this.course, this.courseForm);
     this.submitEvent.emit(this.course);
   }
 
+  public updateDataInCourseFromForm(course: Course, courseForm: FormGroup): void {
+    let value = courseForm.value;
+    this.course.title = value.title;
+    this.course.description = value.description;
+    this.course.thumbnailUrl = value.thumbnailUrl;
+    this.course.rating = value.rating;
+  }
 
   private createCourseForm(): FormGroup {
     let title: string = this.course ? this.course.title : '';
@@ -51,4 +57,7 @@ export class CourseFormComponent implements OnInit {
     return formGroup;
   }
 
+  setError($event): void {
+    this.hasImageError = true;
+  }
 }
