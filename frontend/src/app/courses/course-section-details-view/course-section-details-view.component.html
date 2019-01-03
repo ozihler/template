@@ -1,0 +1,8 @@
+<div *ngIf="courseSection">
+  <h1>{{courseSection.sectionTitle}}</h1>
+  <md-editor
+    [height]="height"
+    [ngModel]="courseSection.sectionMarkdown"
+    mode="preview"
+    name="Content"></md-editor>
+</div>

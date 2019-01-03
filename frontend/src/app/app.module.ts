@@ -24,6 +24,7 @@ import {CreatedCoursesOverviewComponent} from './courses/course-creation/created
 import {CourseWizardComponent} from './courses/course-presentation/course-wizard/course-wizard.component';
 import { CourseSectionsOverviewComponent } from './courses/course-presentation/course-sections-overview/course-sections-overview.component';
 import { CourseSectionDetailsComponent } from './courses/course-presentation/course-section-details/course-section-details.component';
+import { CourseSectionDetailsViewComponent } from './courses/course-section-details-view/course-section-details-view.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CourseSectionDetailsComponent } from './courses/course-presentation/cou
     CreatedCoursesOverviewComponent,
     CourseWizardComponent,
     CourseSectionsOverviewComponent,
-    CourseSectionDetailsComponent
+    CourseSectionDetailsComponent,
+    CourseSectionDetailsViewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,15 @@
-<div *ngIf="currentCourseSection">
-  <h1>{{currentCourseSection.sectionTitle}}</h1>
-  <md-editor
-    [height]="height"
-    [ngModel]="currentCourseSection.sectionMarkdown"
-    mode="preview"
-    name="Content"></md-editor>
+<app-course-section-details-view [courseSection]="currentCourseSection"></app-course-section-details-view>
+
+<div class="d-flex justify-content-center">
+
+  <button class="btn btn-primary"
+          [disabled]="currentPage === 0"
+          (click)="previousSection()">vorheriger Teil
+  </button>
+  &nbsp;
+  <button class="btn btn-primary"
+          [disabled]="currentPage === courseSections?.length-1 || !courseSections || courseSections.length === 0"
+          (click)="nextSection()">nächster Teil
+  </button>
 </div>
-<button class="btn btn-primary"
-        [disabled]="currentPage === 0"
-        (click)="previousSection()">vorheriger Teil
-</button>
-&nbsp;
-<button class="btn btn-primary"
-        [disabled]="currentPage === courseSections?.length-1 || !courseSections || courseSections.length === 0"
-        (click)="nextSection()">nächster Teil
-</button>
+
