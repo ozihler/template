@@ -22,14 +22,15 @@
   </app-course-form>
 </div>
 
+<app-course-section-overview-table
+  [courseSections]="courseSections"
+  (deleteCourseSectionEvent)="deleteCourseSection($event)">
+</app-course-section-overview-table>
+
+<br/>
 <app-course-section
   [isAddButton]="true"
   (courseSectionEvent)="addCourseSection($event)">
 </app-course-section>
 
-<br/>
-<app-course-section-overview-table
-  [courseSections]="courseSections"
-  (deleteCourseSectionEvent)="deleteCourseSection($event)">
-</app-course-section-overview-table>
 
