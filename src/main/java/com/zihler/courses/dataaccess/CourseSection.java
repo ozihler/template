@@ -12,11 +12,13 @@ import javax.persistence.*;
 public class CourseSection {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "course_section_table_generator")
+    @Column(name = "course_section_id", updatable = false, nullable = false)
     private Long id;
-
-    private String sectionTitle;
+    @Column(name = "title")
+    private String title;
     @Lob
-    private String sectionMarkdown;
+    @Column(name = "markdown")
+    private String markdown;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_id", nullable = false)
@@ -25,15 +27,15 @@ public class CourseSection {
 
     public static CourseSection from(Course course, CourseSectionDto courseSectionDto) {
         CourseSection courseSection = new CourseSection();
-        courseSection.setSectionTitle(courseSectionDto.getSectionTitle());
-        courseSection.setSectionMarkdown(courseSectionDto.getSectionMarkdown());
+        courseSection.setTitle(courseSectionDto.getTitle());
+        courseSection.setMarkdown(courseSectionDto.getMarkdown());
         courseSection.setCourse(course);
         return courseSection;
     }
 
     public CourseSection updateCourseSection(CourseSectionDto courseSectionData) {
-        setSectionTitle(courseSectionData.getSectionTitle());
-        setSectionMarkdown(courseSectionData.getSectionMarkdown());
+        setTitle(courseSectionData.getTitle());
+        setMarkdown(courseSectionData.getMarkdown());
         return this;
     }
 
@@ -45,20 +47,20 @@ public class CourseSection {
         this.id = id;
     }
 
-    public String getSectionTitle() {
-        return sectionTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSectionTitle(String sectionTitle) {
-        this.sectionTitle = sectionTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getSectionMarkdown() {
-        return sectionMarkdown;
+    public String getMarkdown() {
+        return markdown;
     }
 
-    public void setSectionMarkdown(String sectionMarkdown) {
-        this.sectionMarkdown = sectionMarkdown;
+    public void setMarkdown(String markdown) {
+        this.markdown = markdown;
     }
 
     public Course getCourse() {

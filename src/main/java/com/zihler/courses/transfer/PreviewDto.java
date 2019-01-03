@@ -11,12 +11,12 @@ public class PreviewDto {
     private String title;
     private String description;
     private String thumbnailUrl;
-    private int rating;
+    private Long rating;
 
     public PreviewDto() {
     }
 
-    private PreviewDto(long id, String title, String description, String thumbnailUrl, int rating) {
+    private PreviewDto(long id, String title, String description, String thumbnailUrl, Long rating) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -38,7 +38,6 @@ public class PreviewDto {
         return courses.stream()
                 .map(PreviewDto::createPreviewFrom)
                 .collect(toList());
-
     }
 
     public long getId() {
@@ -57,7 +56,7 @@ public class PreviewDto {
         return thumbnailUrl;
     }
 
-    public int getRating() {
+    public Long getRating() {
         return rating;
     }
 

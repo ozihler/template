@@ -83,9 +83,9 @@ public class Course2PdfService {
 
         for (CourseSection courseSection : courseSections) {
             formatted.append("# ")
-                    .append(courseSection.getSectionTitle())
+                    .append(courseSection.getTitle())
                     .append("\n")
-                    .append(courseSection.getSectionMarkdown())
+                    .append(courseSection.getMarkdown())
                     .append("\n");
         }
         return formatted.toString();

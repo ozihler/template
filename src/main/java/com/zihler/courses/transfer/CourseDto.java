@@ -7,12 +7,12 @@ public class CourseDto {
     private String title;
     private String description;
     private String thumbnailUrl;
-    private int rating;
+    private Long rating;
 
     public CourseDto() {
     }
 
-    private CourseDto(long id, String title, String description, String thumbnailUrl, int rating) {
+    private CourseDto(long id, String title, String description, String thumbnailUrl, Long rating) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -40,7 +40,7 @@ public class CourseDto {
         return thumbnailUrl;
     }
 
-    public int getRating() {
+    public Long getRating() {
         return rating;
     }
 

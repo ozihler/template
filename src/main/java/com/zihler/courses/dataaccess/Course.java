@@ -10,12 +10,16 @@ import javax.persistence.*;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "course_table_generator")
+    @Column(name = "course_id", updatable = false, nullable = false)
     private Long id;
-
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "thumbnail_url")
     private String thumbnailUrl;
-    private int rating;
+    @Column(name="rating_id")
+    private Long rating;
 
     public static Course from(CourseDto courseDto) {
         Course course = new Course();
@@ -24,6 +28,14 @@ public class Course {
         course.setThumbnailUrl(courseDto.getThumbnailUrl());
         course.setRating(courseDto.getRating());
         return course;
+    }
+
+    public Course updateCourse(CourseDto courseDto) {
+        setTitle(courseDto.getTitle());
+        setDescription(courseDto.getDescription());
+        setThumbnailUrl(courseDto.getThumbnailUrl());
+        setRating(courseDto.getRating());
+        return this;
     }
 
     public Long getId() {
@@ -58,19 +70,11 @@ public class Course {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public int getRating() {
+    public Long getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Long rating) {
         this.rating = rating;
-    }
-
-    public Course updateCourse(CourseDto courseDto) {
-        setTitle(courseDto.getTitle());
-        setDescription(courseDto.getDescription());
-        setThumbnailUrl(courseDto.getThumbnailUrl());
-        setRating(courseDto.getRating());
-        return this;
     }
 }

@@ -2,13 +2,13 @@
   <br/>
   <label>
     Kursteil Titel
-    <input [(ngModel)]="courseSection.sectionTitle"/>
+    <input [(ngModel)]="courseSection.title"/>
   </label>
 
   <br/>
   <br/>
   <md-editor name="Content"
-             [(ngModel)]="courseSection.sectionMarkdown"
+             [(ngModel)]="courseSection.markdown"
              [height]="'500px'"
              required>
   </md-editor>
