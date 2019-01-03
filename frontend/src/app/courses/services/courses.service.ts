@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Course} from "../entities/course";
+import {Preview} from "../entities/preview";
+import {MaxRating} from "../entities/max-rating";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class CoursesService {
     return this.httpClient.get<MaxRating>(`${this.baseUrl}/currentMaxRating`);
   }
 
-  public getCourse(id: string): Observable<Course> {
+  public getCourse(id: number): Observable<Course> {
     return this.httpClient.get<Course>(`${this.baseUrl}/${id}`);
   }
 

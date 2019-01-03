@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {CoursesService} from "../../../services/courses.service";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {Preview} from "../../../entities/preview";
 
 @Component({
   selector: 'app-filter-courses-input',

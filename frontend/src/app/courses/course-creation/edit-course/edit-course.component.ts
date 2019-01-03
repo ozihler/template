@@ -21,7 +21,7 @@ export class EditCourseComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.courseService.getCourse(params['id'])
+      this.courseService.getCourse(parseInt(params['id']))
         .subscribe(course => {
           this.course = course;
           this.courseSectionService.getAllCourseSectionsForCourse(course.id)

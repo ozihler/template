@@ -1,4 +1,4 @@
-interface Preview {
+export class Preview {
   id: number;
   title: string;
   description: string;

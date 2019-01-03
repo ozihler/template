@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Preview} from "../../entities/preview";
 
 @Component({
   selector: 'app-course-preview',

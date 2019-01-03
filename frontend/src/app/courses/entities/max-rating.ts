@@ -1,3 +1,3 @@
-interface MaxRating {
+export class MaxRating {
   maxRating: number;
 }

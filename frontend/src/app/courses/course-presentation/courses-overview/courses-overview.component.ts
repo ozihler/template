@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CoursesService} from "../../services/courses.service";
 import {MaxRatingService} from "../star-rating/max-rating.service";
+import {Preview} from "../../entities/preview";
 
 @Component({
   selector: 'app-courses',
