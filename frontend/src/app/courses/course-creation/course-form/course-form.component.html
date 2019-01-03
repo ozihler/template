@@ -1,34 +1,46 @@
 <div class="container">
   <form (ngSubmit)="submit()" [formGroup]="courseForm">
-    <label>
-      Titel des Kurses:
-      <input formControlName="title"
-             required
-             type="text"/>
-    </label>
-    <br/>
-    <label>
-      Beschreibung des Kurses:
-      <input formControlName="description"
-             required
-             type="text"/>
-    </label>
-    <br/>
-    <label>
-      Url zu einem Bild für den Kurses:
-      <input formControlName="thumbnailUrl"
-             required
-             type="text"
-      />
-    </label>
-    <br/>
-    <img class="img-fluid"
-      *ngIf="course && course.thumbnailUrl && !hasImageError" (error)="setError($event)"
-         [src]="course.thumbnailUrl"/>
-    <br/>
-    <button class="btn btn-primary"
-            [disabled]="!courseForm.valid"
-            type="submit">{{buttonText}}
-    </button>
+    <div class="form-group">
+      <label for="title">
+        Titel des Kurses
+      </label>
+      <input
+        id="title"
+        formControlName="title"
+        class="form-control"
+        required
+        type="text"/>
+      <label for="description">
+        Beschreibung des Kurses
+      </label>
+      <input
+        id="description"
+        formControlName="description"
+        class="form-control"
+        required
+        type="text"/>
+      <label for="thumbnailUrl">
+        Url zu einem Bild für den Kurses
+      </label>
+      <input
+        id="thumbnailUrl"
+        formControlName="thumbnailUrl"
+        class="form-control"
+        required
+        type="text"/>
+      <div class="container">
+        <img class="img-fluid"
+             *ngIf="course && course.thumbnailUrl && !hasImageError"
+             (error)="setError($event)"
+             [src]="course.thumbnailUrl"/>
+      </div>
+      <button
+        class="btn btn-primary"
+        [disabled]="!courseForm.valid"
+        type="submit">
+        {{buttonText}}
+      </button>
+    </div>
   </form>
+
 </div>

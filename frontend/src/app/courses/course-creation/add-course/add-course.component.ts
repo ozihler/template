@@ -10,6 +10,8 @@ import {Course} from "../../entities/course";
 })
 export class AddCourseComponent implements OnInit {
   error: any;
+  shouldShowCreationForm: boolean = false;
+  shouldShowBundleForm: boolean = false;
 
   constructor(private router: Router, private courseService: CoursesService) {
   }
@@ -29,5 +31,13 @@ export class AddCourseComponent implements OnInit {
 
   private handleError(error) {
     this.error = JSON.stringify(error);
+  }
+
+  showCourseCreationForm() {
+    this.shouldShowCreationForm = !this.shouldShowCreationForm;
+  }
+
+  showBundleCourses() {
+    this.shouldShowBundleForm = !this.shouldShowBundleForm;
   }
 }

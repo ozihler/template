@@ -1,4 +1,22 @@
-<div>
+<div class="container">
   <span *ngIf="error">{{error}}</span>
-  <app-course-form (submitEvent)="submitCourse($event)" [buttonText]="'Kurs erstellen'"></app-course-form>
+  <button
+    class="btn btn-primary"
+    (click)="showCourseCreationForm()">Neuen Kurs erstellen
+  </button>
+
+  <app-course-form
+    *ngIf="shouldShowCreationForm"
+    (submitEvent)="submitCourse($event)"
+    [buttonText]="'Kurs erstellen'">
+  </app-course-form>
+
+  <button
+    class="btn btn-primary"
+    (click)="showBundleCourses()">
+    Kursbundle erstellen
+  </button>
+  <div *ngIf="shouldShowBundleForm">
+    Kurse bündeln
+  </div>
 </div>
