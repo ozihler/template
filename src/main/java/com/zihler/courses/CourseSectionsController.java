@@ -2,6 +2,7 @@ package com.zihler.courses;
 
 import com.zihler.courses.transfer.CourseSectionDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/api/courseSections",
-        produces = "application/json;charset=UTF-8")
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class CourseSectionsController {
 
     private CourseSectionsService courseSectionsService;
@@ -43,5 +44,6 @@ public class CourseSectionsController {
     public CourseSectionDto updateCourseSection(@PathVariable("id") long id, @RequestBody CourseSectionDto courseSectionDto) {
         return courseSectionsService.updateCourseSection(id, courseSectionDto);
     }
+
 }
 

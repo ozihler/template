@@ -7,3 +7,6 @@
 - implement conversion to md -> pdf
 -- create pdf generator for authors to be able to select parts they want to have in the code
 -- provide inclusion of css file
+
+Technical:
+- RouteParameters class with strings for route parameters as constants (no magic strings)
