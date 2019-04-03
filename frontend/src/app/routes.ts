@@ -1,7 +1,8 @@
 import {Routes} from "@angular/router";
+import {InitiativesOverviewComponent} from "./initiatives-overview/initiatives-overview.component";
 
 
 export const routes: Routes = [
-  // {path: 'courses', component: CoursesOverviewComponent},
-  {path: '', redirectTo: '/courses', pathMatch: 'full'}
+  {path: 'initiatives', component: InitiativesOverviewComponent},
+  {path: '', redirectTo: '/initiatives', pathMatch: 'full'}
 ];

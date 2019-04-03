@@ -7,10 +7,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {InitiativesOverviewComponent} from './initiatives-overview/initiatives-overview.component';
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InitiativesOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    TableModule,
   ],
   providers: [HttpClient,
     {provide: "windowObject", useValue: window}],

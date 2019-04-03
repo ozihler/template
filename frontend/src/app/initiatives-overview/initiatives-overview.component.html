@@ -1,0 +1,26 @@
+<h1 class="text-center">Alle Initiativen auf einen Blick</h1>
+
+<p-table [columns]="cols" [value]="initiatives">
+  <ng-template let-columns pTemplate="header">
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template let-columns="columns" let-initiative pTemplate="body">
+
+    <tr>
+      <td *ngFor="let col of columns">
+        <span *ngIf="col.field === 'submitDate' || col.field==='deadline'">
+          {{initiative[col.field] | date}}
+        </span>
+        <span *ngIf="!(col.field === 'submitDate' || col.field==='deadline')">
+          {{initiative[col.field]}}
+        </span>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
