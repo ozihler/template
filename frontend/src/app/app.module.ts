@@ -24,5 +24,5 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     {provide: "windowObject", useValue: window}],
   bootstrap: [AppComponent]
 })
-export class AppModule {
+export class AppModule { //
 }
