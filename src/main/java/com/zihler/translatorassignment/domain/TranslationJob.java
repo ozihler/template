@@ -1,19 +1,18 @@
-package com.zihler.translationtrials;
+package com.zihler.translatorassignment.domain;
 
 public class TranslationJob {
     private Long id;
-    private TranslationJobAssignmentContract contract;
+    private AssignmentContract contract;
 
     public TranslationJob(Long id) {
         this.id = id;
     }
 
-    public AssignmentReceit set(TranslationJobAssignmentContract contract) {
+    public void bindTo(AssignmentContract contract) {
         if (isAssignedAlready()) {
-            throw new IllegalAssignmentException("");
+            throw new MultipleAssignmentException();
         }
         this.contract = contract;
-        return AssignmentReceit.create(this, contract);
     }
 
     public Long getId() {

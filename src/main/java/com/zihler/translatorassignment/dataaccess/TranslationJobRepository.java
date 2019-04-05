@@ -1,4 +1,4 @@
-package com.zihler.translationtrials;
+package com.zihler.translatorassignment.dataaccess;
 
 import org.springframework.data.repository.CrudRepository;
 

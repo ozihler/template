@@ -1,5 +1,8 @@
-package com.zihler.translationtrials;
+package com.zihler.translatorassignment.applicationservice;
 
+import com.zihler.translatorassignment.dataaccess.TranslationJobData;
+import com.zihler.translatorassignment.dataaccess.TranslationJobRepository;
+import com.zihler.translatorassignment.domain.TranslationJob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
