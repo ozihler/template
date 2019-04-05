@@ -8,7 +8,7 @@ public class TranslationJob {
         this.id = id;
     }
 
-    public AssignmentReceit assign(TranslationJobAssignmentContract contract) {
+    public AssignmentReceit set(TranslationJobAssignmentContract contract) {
         if (isAssignedAlready()) {
             throw new IllegalAssignmentException("");
         }

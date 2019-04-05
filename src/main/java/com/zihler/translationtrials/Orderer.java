@@ -30,7 +30,7 @@ public class Orderer implements TranslationToolUser {
 
     public AssignmentReceit to(Translator translator) {
         TranslationJobAssignmentContract contract = TranslationJobAssignmentContract.between(this, translator);
-        AssignmentReceit assignmentReceit = this.translationJob.assign(contract);
+        AssignmentReceit assignmentReceit = this.translationJob.set(contract);
         this.storeReceit(assignmentReceit);
         translator.storeReceit(assignmentReceit);
         return assignmentReceit;
