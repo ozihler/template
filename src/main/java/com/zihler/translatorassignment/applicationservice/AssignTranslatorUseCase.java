@@ -27,11 +27,11 @@ public class AssignTranslatorUseCase {
     }
 
     public AssignmentContractReceipt assignTranslator(AssignTranslatorRequest request) {
-        Orderer orderer = findOrdererFrom(request);
-        Translator translator = findTranslatorFrom(request);
-        TranslationJob translationJob = findTranslationJobFrom(request);
+        var orderer = findOrdererFrom(request);
+        var translator = findTranslatorFrom(request);
+        var translationJob = findTranslationJobFrom(request);
 
-        AssignmentContractReceipt receipt = orderer
+        var receipt = orderer
                 .assign(translationJob)
                 .to(translator);
 
