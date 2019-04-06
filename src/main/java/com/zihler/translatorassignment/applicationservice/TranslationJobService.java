@@ -16,4 +16,8 @@ public class TranslationJobService {
         TranslationJob translationJobData = translationJobRepository.findById(translationJobId);
         return new TranslationJob(translationJobData.getId());
     }
+
+    public TranslationJob findTranslationJobFrom(AssignTranslatorRequest command) {
+        return findById(command.getTranslationJobId());
+    }
 }
