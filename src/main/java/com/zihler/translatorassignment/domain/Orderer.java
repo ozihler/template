@@ -19,8 +19,8 @@ public class Orderer implements TranslationToolUser {
     }
 
     @Override
-    public void storeReceipt(AssignmentContractReceipt receipt) {
-        user.storeReceipt(receipt);
+    public void store(AssignmentContractReceipt receipt) {
+        user.store(receipt);
     }
 
     @Override

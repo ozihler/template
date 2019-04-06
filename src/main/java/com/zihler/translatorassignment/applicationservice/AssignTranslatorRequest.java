@@ -1,5 +1,7 @@
 package com.zihler.translatorassignment.applicationservice;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class AssignTranslatorRequest {
     private String orderer;
     private String translator;
@@ -21,5 +23,20 @@ public class AssignTranslatorRequest {
 
     public Long getTranslationJobId() {
         return translationJobId;
+    }
+
+    public boolean isValid() {
+        return !StringUtils.isBlank(orderer)
+                && !StringUtils.isBlank(translator)
+                && translationJobId != null;
+    }
+
+    @Override
+    public String toString() {
+        return "AssignTranslatorRequest{" +
+                "orderer='" + orderer + '\'' +
+                ", translator='" + translator + '\'' +
+                ", translationJobId=" + translationJobId +
+                '}';
     }
 }

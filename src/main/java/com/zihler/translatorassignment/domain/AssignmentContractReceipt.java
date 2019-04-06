@@ -1,8 +1,8 @@
 package com.zihler.translatorassignment.domain;
 
-import com.zihler.translatorassignment.annotations.ValueObject;
+import com.zihler.translatorassignment.annotations.DDDValueObject;
 
-@ValueObject
+@DDDValueObject
 public class AssignmentContractReceipt {
     private final AssignmentContract contract;
 

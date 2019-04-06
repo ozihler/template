@@ -17,7 +17,7 @@ public class BasicTranslationToolUser implements TranslationToolUser {
     }
 
     @Override
-    public void storeReceipt(AssignmentContractReceipt receipt) {
+    public void store(AssignmentContractReceipt receipt) {
         this.receipts.add(receipt);
     }
 

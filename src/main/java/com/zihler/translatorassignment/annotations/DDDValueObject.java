@@ -1,4 +1,4 @@
 package com.zihler.translatorassignment.annotations;
 
-public @interface ValueObject {
+public @interface DDDValueObject {
 }

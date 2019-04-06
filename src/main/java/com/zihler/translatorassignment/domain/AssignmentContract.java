@@ -41,8 +41,8 @@ public class AssignmentContract {
 
     private AssignmentContractReceipt issueReceipt() {
         AssignmentContractReceipt receipt = AssignmentContractReceipt.issueFor(this);
-        this.orderer.storeReceipt(receipt);
-        this.translator.storeReceipt(receipt);
+        this.orderer.store(receipt);
+        this.translator.store(receipt);
         return receipt;
     }
 

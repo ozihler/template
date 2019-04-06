@@ -1,9 +1,7 @@
 package com.zihler.translatorassignment.applicationservice;
 
 import com.zihler.translatorassignment.domain.AssignmentContractReceipt;
-import com.zihler.translatorassignment.domain.Orderer;
 import com.zihler.translatorassignment.domain.TranslationJob;
-import com.zihler.translatorassignment.domain.Translator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,8 @@ public class AssignTranslatorUseCase {
     }
 
     public AssignmentContractReceipt assignTranslator(AssignTranslatorRequest request) {
-        var orderer = findOrdererFrom(request);
-        var translator = findTranslatorFrom(request);
+        var orderer = userService.findOrdererFrom(request.getOrderer());
+        var translator = userService.findTranslatorFrom(request.getTranslator());
         var translationJob = findTranslationJobFrom(request);
 
         var receipt = orderer
@@ -42,14 +40,6 @@ public class AssignTranslatorUseCase {
 
     private TranslationJob findTranslationJobFrom(AssignTranslatorRequest command) {
         return translationJobService.findById(command.getTranslationJobId());
-    }
-
-    private Translator findTranslatorFrom(AssignTranslatorRequest command) {
-        return new Translator(userService.findByUsername(command.getTranslator()));
-    }
-
-    private Orderer findOrdererFrom(AssignTranslatorRequest command) {
-        return new Orderer(userService.findByUsername(command.getOrderer()));
     }
 
 }

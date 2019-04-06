@@ -1,29 +1,31 @@
 package com.zihler.translatorassignment.applicationservice;
 
-import com.zihler.translatorassignment.dataaccess.User;
-import com.zihler.translatorassignment.dataaccess.UserRepository;
-import com.zihler.translatorassignment.domain.AssignmentContractReceipt;
 import com.zihler.translatorassignment.domain.BasicTranslationToolUser;
+import com.zihler.translatorassignment.domain.Orderer;
 import com.zihler.translatorassignment.domain.TranslationToolUser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zihler.translatorassignment.domain.Translator;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
-    private ReceiptRepository receiptRepository;
 
-    @Autowired
-    public UserService(UserRepository userRepository, ReceiptRepository receiptRepository) {
-        this.userRepository = userRepository;
-        this.receiptRepository = receiptRepository;
+    private UserRepository userRepository;
+
+    public UserService() {
+        this.userRepository = username -> new BasicTranslationToolUser(username, new ArrayList<>());
     }
 
-    public TranslationToolUser findByUsername(String username) {
-        User userData = userRepository.findByUsername(username);
-        Collection<AssignmentContractReceipt> receipts = receiptRepository.findByUserId(userData.getId());
-        return new BasicTranslationToolUser(userData.getUsername(), receipts);
+    TranslationToolUser findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    Translator findTranslatorFrom(String translatorUsername) {
+        return new Translator(findByUsername(translatorUsername));
+    }
+
+    Orderer findOrdererFrom(String ordererUsername) {
+        return new Orderer(findByUsername(ordererUsername));
     }
 }
