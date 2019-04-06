@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class UserService {
 
     private UserRepository userRepository;
+    private SecurityService securityService;
 
     public UserService() {
         this.userRepository = username -> new BasicTranslationToolUser(username, new ArrayList<>());
+        this.securityService = new SecurityService();
     }
 
     TranslationToolUser findByUsername(String username) {
@@ -26,6 +28,14 @@ public class UserService {
     }
 
     Orderer findOrdererFrom(String ordererUsername) {
-        return new Orderer(findByUsername(ordererUsername));
+        if (canOrderTranslationJobs(ordererUsername)) {
+            return new Orderer(findByUsername(ordererUsername));
+        } else {
+            throw new IllegalImpersonationException(String.format("User %s is not allowed to order translation jobs", ordererUsername));
+        }
+    }
+
+    private boolean canOrderTranslationJobs(String ordererUsername) {
+        return securityService.canOrderTranslationJobs(ordererUsername);
     }
 }

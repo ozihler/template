@@ -7,6 +7,9 @@ public class AssignTranslatorRequest {
     private String translator;
     private Long translationJobId;
 
+    public AssignTranslatorRequest() {
+    }
+
     public AssignTranslatorRequest(String orderer, String translator, Long translationJobId) {
         this.orderer = orderer;
         this.translator = translator;

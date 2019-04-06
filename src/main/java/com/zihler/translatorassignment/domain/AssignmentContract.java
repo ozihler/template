@@ -1,6 +1,6 @@
 package com.zihler.translatorassignment.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class AssignmentContract {
@@ -8,7 +8,7 @@ public class AssignmentContract {
     private TranslationJob translationJob;
     private Orderer orderer;
     private Translator translator;
-    private LocalDate finalizationDate;
+    private LocalDateTime finalizationDate;
 
     private AssignmentContract(Orderer orderer, TranslationJob translationJob) {
         this.id = UUID.randomUUID();
@@ -32,22 +32,22 @@ public class AssignmentContract {
     private AssignmentContractReceipt finalizeContract() {
         fixFinalizationDate();
         bindContractToTranslationJob();
-        return issueReceipt();
+        return issueReceiptToAllParties();
     }
 
     private void bindContractToTranslationJob() {
         this.translationJob.bindTo(this);
     }
 
-    private AssignmentContractReceipt issueReceipt() {
-        AssignmentContractReceipt receipt = AssignmentContractReceipt.issueFor(this);
+    private AssignmentContractReceipt issueReceiptToAllParties() {
+        final AssignmentContractReceipt receipt = AssignmentContractReceipt.issueFor(this);
         this.orderer.store(receipt);
         this.translator.store(receipt);
         return receipt;
     }
 
     private void fixFinalizationDate() {
-        this.finalizationDate = LocalDate.now();
+        this.finalizationDate = LocalDateTime.now();
     }
 
     private void assign(Translator translator) {
@@ -81,7 +81,7 @@ public class AssignmentContract {
         return translator;
     }
 
-    public LocalDate getFinalizationDate() {
+    public LocalDateTime getFinalizationDate() {
         if (!isFinalized()) {
             throw new MissingFinalizationException();
         }

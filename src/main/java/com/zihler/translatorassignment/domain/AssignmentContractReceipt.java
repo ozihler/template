@@ -16,7 +16,11 @@ public class AssignmentContractReceipt {
 
     @Override
     public String toString() {
-        return String.format("Assignment Contract with id %s, received at %s, for job %d, ordered by '%s', will be translated by translator='%s'",
+        return String.format("Assignment Contract with id %s, received at %s, for job %d, ordered by '%s', will be translated by translator '%s'",
                 contract.getId(), contract.getFinalizationDate(), contract.getTranslationJob().getId(), contract.getOrderer().getUsername(), contract.getTranslator().getUsername());
+    }
+
+    public AssignmentContract getContract() {
+        return contract;
     }
 }

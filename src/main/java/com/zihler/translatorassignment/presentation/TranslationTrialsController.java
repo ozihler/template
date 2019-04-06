@@ -6,6 +6,7 @@ import com.zihler.translatorassignment.domain.AssignmentContractReceipt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/")
@@ -17,12 +18,15 @@ public class TranslationTrialsController {
         this.assignTranslatorUseCase = assignTranslatorUseCase;
     }
 
-    @PostMapping("assignments")
-    public AssignmentContractReceipt assignTranslator(AssignTranslatorRequest command) {
-        if (command.isValid()) {
+    @PostMapping(value = "assignments")
+    public AssignmentContractReceiptDto assignTranslator(@RequestBody AssignTranslatorRequest command) {
+        if (!command.isValid()) {
             throw new AssignmentCommandInvalidException(command);
         }
-        return assignTranslatorUseCase.assignTranslator(command);
+
+        AssignmentContractReceipt receipt = assignTranslatorUseCase.assignTranslator(command);
+
+        return AssignmentContractReceiptDto.create(receipt);
     }
 
     @GetMapping("exception")

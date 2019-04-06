@@ -1,5 +1,6 @@
 package com.zihler.translatorassignment.presentation;
 
+import com.zihler.translatorassignment.applicationservice.IllegalImpersonationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,8 +15,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AssignmentCommandInvalidException.class)
-    public ResponseEntity<String> handleAssignmentCommandInvalidException(AssignmentCommandInvalidException ex) {
+    public ResponseEntity<AssignmentCommandInvalidException> handleAssignmentCommandInvalidException(AssignmentCommandInvalidException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(ex.getMessage());
+                .body(ex);
+    }
+
+    @ExceptionHandler(IllegalImpersonationException.class)
+    public ResponseEntity<IllegalImpersonationException> handleIllegalImpersonationException(IllegalImpersonationException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ex);
     }
 }
