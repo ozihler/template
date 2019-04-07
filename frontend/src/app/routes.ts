@@ -1,8 +1,8 @@
 import {Routes} from "@angular/router";
-import {InitiativesOverviewComponent} from "./initiatives-overview/initiatives-overview.component";
+import {PinupWallComponent} from "./pinup-wall/pinup-wall.component";
 
 
 export const routes: Routes = [
-  {path: 'initiatives', component: InitiativesOverviewComponent},
-  {path: '', redirectTo: '/initiatives', pathMatch: 'full'}
+  {path: 'pinupwall', component: PinupWallComponent},
+  {path: '', redirectTo: '/pinupwall', pathMatch: 'full'}
 ];

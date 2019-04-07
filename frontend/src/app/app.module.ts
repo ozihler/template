@@ -7,13 +7,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {routes} from "./routes";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {InitiativesOverviewComponent} from './initiatives-overview/initiatives-overview.component';
 import {TableModule} from "primeng/table";
+import {PinupWallComponent} from './pinup-wall/pinup-wall.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InitiativesOverviewComponent
+    PinupWallComponent
   ],
   imports: [
     BrowserModule,
